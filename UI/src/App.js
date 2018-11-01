@@ -10,6 +10,7 @@ const Navigation = (props) =>
   <Navbar>
     <NavLink to="/"/>
     <NavLink to="/Home"/>
+    <NavLink to="/Favourite"/>
   </Navbar>
 
 class App extends Component {

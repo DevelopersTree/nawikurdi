@@ -10,7 +10,8 @@ const ModalModalExample = () => (
   <Modal stackable style={{textAlign:'right'}} trigger={<Button style={{background:'transparent',}}>دەربارە</Button>}>
     <Modal.Header style={{color:'white',
                           // background: 'rgb(217,151,176)',
-                          background: 'linear-gradient(90deg, rgba(217,151,176,1) 0%, rgba(181,231,232,1) 100%)',
+                          // background: 'linear-gradient(90deg, rgba(217,151,176,1) 0%, rgba(181,231,232,1) 100%)',
+                          background: '#666666',
                         }}>
       <h1>
       دەربارەی ئێمە
@@ -28,7 +29,9 @@ const ModalModalExample = () => (
     <Modal.Header style={{
                           paddingTop:50,
                           // background: 'rgb(217,151,176)',
-                          background: 'linear-gradient(90deg, rgba(217,151,176,1) 0%, rgba(181,231,232,1) 100%)', }}>
+                          background: '#666666',
+                          // background: 'linear-gradient(90deg, rgba(217,151,176,1) 0%, rgba(181,231,232,1) 100%)',
+                         }}>
 
     </Modal.Header>
   </Modal>

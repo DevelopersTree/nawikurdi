@@ -3,7 +3,7 @@ import { Container, Grid, Pagination, } from 'semantic-ui-react'
 
 import { getAllNamesWithLimit,getCountAllNames,getAllNamesWithLimitAndSearch } from '../../actions/Names';
 import Search from './Search';
-import CardName from './CardName';
+import MeaningCardNameModal from './MeaningCardNameModal';
 import NoFoundName from './NoFoundName';
 
 // import Background from '../../resources/backgroundImage.jpg';
@@ -95,12 +95,11 @@ class Home extends Component {
           style={{
               padding: 0,
               margin: 0,
-              backgroundSize: 'cover',
+              // backgroundSize: 'cover',
               backgroundPositionY:'50%',
               height: 400,
               width: '100%',
-              backgroundImage: "url(http://babygi.pt/_gi/banners/desktop.jpg)"
-              // backgroundImage: 'url(http://babygi.pt/_gi/banners/desktop.jpg)'
+              backgroundImage: "url(https://www.toptal.com/designers/subtlepatterns/patterns/memphis-colorful.png)"
             }}
          >
           <Search onChange={this.changeNamesAndTotalPages}/>
@@ -111,7 +110,7 @@ class Home extends Component {
             this.state.names.map((name) =>{
               return(
                 <Grid.Column>
-                  <CardName name={name} key={name.nameId}/>
+                  <MeaningCardNameModal name={name} key={name.nameId}/>
                 </Grid.Column>
               )
             })

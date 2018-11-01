@@ -68,7 +68,7 @@ class Search extends Component {
     return (
       <div stackable
            style={{
-              background: 'rgba(0, 0, 0, 0.5)',
+              background: 'rgba(0, 0, 0, 0.6)',
               padding: 0,
               margin: 0,
               height: 400,

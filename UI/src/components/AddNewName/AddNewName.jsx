@@ -70,7 +70,7 @@ class ModalModalExample extends Component{
           >
         <Modal.Header style={{color:'white',
                               // background: 'rgb(217,151,176)',
-                              background: 'linear-gradient(90deg, rgba(217,151,176,1) 0%, rgba(181,231,232,1) 100%)',
+                              background: '#666666',
                             }}>
           <h1>
             ناوێک زیاد بکە
@@ -83,12 +83,14 @@ class ModalModalExample extends Component{
                 <Input
                   onChange={this.updateSendName.bind(this)}
                   placeholder="ناوێک بنووسە بۆ ناردن"
+                  style={{border:'1px solid #ded7d7'}}
                 />
               </Form.Field>
               <Form.Field>
                 <Input
                   onChange={this.updateMeaningSendName.bind(this)}
                   placeholder="مانای ناوە نووسراوەکەت بنووسە"
+                  style={{border:'1px solid #ded7d7'}}
                 />
               </Form.Field>
               <Form.Field control='select' onChange={this.updateGender.bind(this)}>
@@ -114,7 +116,7 @@ class ModalModalExample extends Component{
         <Modal.Header style={{
                               paddingTop:50,
                               // background: 'rgb(217,151,176)',
-                              background: 'linear-gradient(90deg, rgba(217,151,176,1) 0%, rgba(181,231,232,1) 100%)', }}>
+                              background: '#666666', }}>
 
         </Modal.Header>
       </Modal>

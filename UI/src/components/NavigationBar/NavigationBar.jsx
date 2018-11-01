@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Menu, Grid, Icon, } from 'semantic-ui-react';
-
+import { Link } from 'react-router-dom'
 import About from '../About/AboutUs';
 import AddNewName from '../AddNewName/AddNewName';
 
@@ -15,7 +15,11 @@ class NavigationBar extends Component {
                 fontWeight: 'bold',fontSize:33
               }}>
 
-                <Menu.Item name='ماڵەوە' href='/Home'/>
+                <Menu.Item>
+                  <Link to="/Home" style={{color:'#666666'}}>
+                    ماڵەوە
+                  </Link>
+                </Menu.Item>
                 <Menu.Item style={{padding:0, margin:0}}>
                   <AddNewName/>
                 </Menu.Item>
@@ -24,7 +28,9 @@ class NavigationBar extends Component {
                 </Menu.Item>
 
                 <Menu.Item style={{padding:0, margin:0}}>
-                  <Icon name='heart' />
+                  <Link to="/Favorite" style={{color:'#666666'}}>
+                    <Icon name='heart' />
+                  </Link>
                 </Menu.Item>
               </Menu>
             </Grid.Row>

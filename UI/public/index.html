@@ -20,7 +20,25 @@
 
     <!-- css semanticui -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css"></link>
+    <link href="http://services.webchin.org/web-fonts/web-font?font=UbuntuKurdish0-81met" rel="stylesheet" type="text/css">
+    <style>
+      .header,h1,a,button,h3,input,.ui .dropdown .label,span,.text,.description,h2{
+        font-family: "Ubuntu Kurdish" !important;
+        font-weight: 100 !important;
+      }
+      .ui .dropdwon .label{
+        background: #f7f7f7 !important;
+      }
+      input{
+        border: 0px !important;
+        border-radius: 0 !important;
+      }
+      span,input,.item,.modal{
+        direction: rtl !important;
+        text-align: right !important;
+      }
 
+    </style>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.

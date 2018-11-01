@@ -9,7 +9,7 @@ class NoFoundName extends Component {
     return (
       <Header as='h1'>
         <Header.Content textAlign='center'>
-          <Image centered size='medium' src='https://cdn2.iconfinder.com/data/icons/misc-vol-3/512/happy_kid_child-512.png' />
+          <Image centered size='medium' src='https://image.flaticon.com/icons/svg/30/30048.svg' />
           ببورە هیچ ناوێک نەدۆزرایەوە
           <Header.Subheader>
             تکایە دووبارە هەوڵدە بە ووشە و پێتی جیاوازتر ...

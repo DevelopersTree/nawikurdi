@@ -14,6 +14,7 @@ class CardName extends Component {
       background:'red'
     };
     let iconName='male';
+    let color='#ffd0d7';
 
     if(name.gender=='F'){
       cardStyle ={
@@ -32,30 +33,31 @@ class CardName extends Component {
         // background:'#c7d8e6'
       }
       iconName='male';
+      color='#c7d8e6';
     }
     else if(name.gender=='O'){
       cardStyle ={
-        boxShadow: '0px 0px 10px #FFFF88',
+        boxShadow: '0px 0px 10px #FF8435',
         textAlign:'center',
         fontSize:30,
         // background:'linear-gradient(90deg, rgba(255,208,215,1) 0%, rgba(199,216,230,1) 100%)'
       }
       iconName='users';
+      color='#FFB280';
     }
     return (
       <Card fluid stackable
-            style={cardStyle}>
+            style={cardStyle}
+            onClick={this.props.onClick}
+        >
         <Card.Content >
-          <Card.Header >
+          <Card.Header style={{fontSize:25,color:'#666666'}}>
             {name.name}
           </Card.Header>
-          <Card.Description style={{fontSize:18}}>
-            {name.desc} بە مانای لولولو دێت
-          </Card.Description>
         </Card.Content>
-        <Card.Content extra style={{textAlign:'right', }}>
+        <Card.Content extra style={{textAlign:'right',color:color }}>
           <div>
-            <div style={{float:'right',fontSize:18}}>
+            <div style={{float:'right',fontSize:22}}>
               <Icon name={iconName} />
             </div>
             <div style={{float:'left',fontSize:22}}>
