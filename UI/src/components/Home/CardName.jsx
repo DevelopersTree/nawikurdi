@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Card, Icon, } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 
-
-// import Background from '../../resources/backgroundImage.jpg';
 class CardName extends Component {
   constructor(props){
     super(props);
+
   }
+
   render() {
     // let background
     const name = this.props.name;
@@ -55,14 +56,12 @@ class CardName extends Component {
             {name.name}
           </Card.Header>
         </Card.Content>
-        <Card.Content extra style={{textAlign:'right',color:color }}>
+        <Card.Content extra style={{textAlign:'center',color:color }}>
           <div>
-            <div style={{float:'right',fontSize:22}}>
+            <div style={{fontSize:22}}>
               <Icon name={iconName} />
             </div>
-            <div style={{float:'left',fontSize:22}}>
-              <Icon name='heart outline' />
-            </div>
+
           </div>
 
         </Card.Content>

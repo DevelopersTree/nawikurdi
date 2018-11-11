@@ -10,7 +10,7 @@ router.get('/:limit/:offset', function(req, res, next) {
 
 router.get('/numberOffRecord', function(req, res, next) {
   db('names').count({ numberOffRecord: 'nameId' }).where({Deleted:0,Activated:1}).then(function(numberOffRecord){
-    // console.log(numberOffRecord);
+    console.log(numberOffRecord);
     res.json(numberOffRecord[0]);
   });
 });

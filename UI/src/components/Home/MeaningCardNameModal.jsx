@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
-import { Header, Modal } from 'semantic-ui-react'
+import { Header, Modal, Icon, Button, Popup } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+
 import CardName from './CardName';
 
 class MeaningCardNameModal extends Component {
@@ -7,12 +9,12 @@ class MeaningCardNameModal extends Component {
     super(props);
     // const product = this.props.product;
     this.state = {
-      open: false
+      open: false,
     };
     this.close = this.close.bind(this);
   }
   componentWillReceiveProps(nextProps){
-    this.props=nextProps
+    this.props=nextProps;
   }
   show = dimmer => () => this.setState({ dimmer, open: true })
   close() {
@@ -29,15 +31,17 @@ class MeaningCardNameModal extends Component {
         >
         <Modal.Header>
           {this.props.name.name}
+
         </Modal.Header>
         <Modal.Content>
           <Modal.Description>
              {
-               this.props.name.desc ?
+               this.props.name.desc==' ' || this.props.name.desc=='' ?
                <p style={{color:'red'}}>
-                ببورە تا ئێستا ماناکەی نییە 
+                ببورە تا ئێستا ماناکەی نییە
                </p>
-               : this.props.name.desc
+               :
+                this.props.name.desc
              }
           </Modal.Description>
         </Modal.Content>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Input, Dropdown } from 'semantic-ui-react'
-import { getAllNamesWithLimitAndSearch } from '../../actions/Names';
+import { getAllNamesWithLimitAndSearch ,getCountAllNames } from '../../actions/Names';
 
 // import Background from '../../resources/backgroundImage.jpg';
 class Search extends Component {
@@ -18,6 +18,7 @@ class Search extends Component {
     this.updateDropdwon = this.updateDropdwon.bind(this);
     this.updateSearch = this.updateSearch.bind(this);
   }
+
   handleChange(namesAndNumberRecord) {
     // alert(namesAndNumberRecord.numberOffRecord.numberOffRecord);
     this.setState({names:namesAndNumberRecord.names});
@@ -66,8 +67,8 @@ class Search extends Component {
       { key: 'all', value: 'all', text: 'هەمووی' }
     ]
     return (
-      <div stackable
-           style={{
+      <div  stackable
+            style={{
               background: 'rgba(0, 0, 0, 0.6)',
               padding: 0,
               margin: 0,
@@ -75,10 +76,10 @@ class Search extends Component {
               width: '100%',
               textAlign:'center',
               paddingTop:120,
-           }}
-      >
+            }}
+        >
         <h1 style={{color:'white', fontSize:50, }}>
-          زیاتر لە ١٢٠٠ ناو هەیە
+          زیاتر لە {this.props.count} ناو هەیە
         </h1>
         <h3 style={{color:'white',}}>
           دۆزینەوەی ناوەکان و ماناکانیان ئاسانتر بووە

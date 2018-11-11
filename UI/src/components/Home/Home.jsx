@@ -17,7 +17,8 @@ class Home extends Component {
       activePage:1,
       totalPages:0,
       searchValue:'hhh',
-      dropdwon:'hhh'
+      dropdwon:'hhh',
+      count:''
     };
     this.changeNamesAndTotalPages = this.changeNamesAndTotalPages.bind(this);
     this.handlePageninationOffsetChange = this.handlePageninationOffsetChange.bind(this);
@@ -59,7 +60,7 @@ class Home extends Component {
     }).catch((error)=>{
     })
     getCountAllNames().then((result)=> {
-      this.setState({totalPages:Math.ceil(result.data.numberOffRecord/this.state.limit)});
+      this.setState({totalPages:Math.ceil(result.data.numberOffRecord/this.state.limit),count:result.data.numberOffRecord});
     }).catch((error)=>{
     })
   }
@@ -87,6 +88,7 @@ class Home extends Component {
         pointing
         secondary
         totalPages={this.state.totalPages}
+         stackable
       />;
     }
     return (
@@ -102,7 +104,7 @@ class Home extends Component {
               backgroundImage: "url(https://www.toptal.com/designers/subtlepatterns/patterns/memphis-colorful.png)"
             }}
          >
-          <Search onChange={this.changeNamesAndTotalPages}/>
+          <Search onChange={this.changeNamesAndTotalPages} count={this.state.count}/>
         </div>
         <Container style={{marginTop:50}}>
           <Grid doubling stackable fluid columns={5}>

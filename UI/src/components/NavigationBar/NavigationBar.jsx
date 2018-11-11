@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Menu, Grid, Icon, } from 'semantic-ui-react';
+import {Menu, Grid, Icon, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom'
 import About from '../About/AboutUs';
 import AddNewName from '../AddNewName/AddNewName';
@@ -12,26 +12,23 @@ class NavigationBar extends Component {
             <Grid.Row>
               <Menu stackable  secondary size="huge" style={{
                 // background:'pink',
-                fontWeight: 'bold',fontSize:33
+                fontWeight: 'bold',fontSize:25
               }}>
 
-                <Menu.Item>
-                  <Link to="/Home" style={{color:'#666666'}}>
+                <Menu.Item style={{textAlign:'center'}}>
+                  <Link to="/Home">
+                    <Button style={{fontSize:25, color:'#666666', margin:0,background:'transparent',}}>
                     ماڵەوە
+                    </Button>
                   </Link>
                 </Menu.Item>
-                <Menu.Item style={{padding:0, margin:0}}>
+                <Menu.Item style={{margin:0}}>
                   <AddNewName/>
                 </Menu.Item>
-                <Menu.Item style={{padding:0, margin:0}}>
+                <Menu.Item style={{margin:0}}>
                   <About/>
                 </Menu.Item>
 
-                <Menu.Item style={{padding:0, margin:0}}>
-                  <Link to="/Favorite" style={{color:'#666666'}}>
-                    <Icon name='heart' />
-                  </Link>
-                </Menu.Item>
               </Menu>
             </Grid.Row>
           </Grid>

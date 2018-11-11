@@ -1,17 +1,6 @@
 import Axios from 'axios';
 
 //home
-export function getCountAllNames(){
-  return new Promise((resolve, reject) => {
-    Axios.get('http://localhost:3001/numberOffRecord').then((result) => {
-      resolve(result)
-    }).catch((error) => {
-      alert(error);
-      reject(error)
-    })
-  })
-}
-
 export function getAllNamesWithLimit(limit,offset){
   return new Promise((resolve, reject) => {
     // alert(`http://localhost:3001/All/${limit}/${offset}`+"");
@@ -50,4 +39,16 @@ export function addNewName(name){
     })
   })
 
+}
+
+// count all name
+export function getCountAllNames(){
+  return new Promise((resolve, reject) => {
+    Axios.get('http://localhost:3001/numberOffRecord').then((result) => {
+      resolve(result)
+    }).catch((error) => {
+      alert(error);
+      reject(error)
+    })
+  })
 }

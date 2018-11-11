@@ -69,7 +69,6 @@ class ModalModalExample extends Component{
 
           >
         <Modal.Header style={{color:'white',
-                              // background: 'rgb(217,151,176)',
                               background: '#666666',
                             }}>
           <h1>
@@ -115,7 +114,6 @@ class ModalModalExample extends Component{
         </Modal.Content>
         <Modal.Header style={{
                               paddingTop:50,
-                              // background: 'rgb(217,151,176)',
                               background: '#666666', }}>
 
         </Modal.Header>
