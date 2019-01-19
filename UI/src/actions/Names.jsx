@@ -1,6 +1,5 @@
 import Axios from 'axios';
-var host = "http://devstree.io/api/nawikurdi";
-// var host = "http://localhost:3001";
+var host = "http://localhost:3001";
 export function getAllNamesWithLimit(limit,offset){
   return new Promise((resolve, reject) => {
     Axios.get(`${host}/${limit}/${offset}`).then((result) => {

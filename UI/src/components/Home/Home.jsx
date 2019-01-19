@@ -88,7 +88,6 @@ class Home extends Component {
         pointing
         secondary
         totalPages={this.state.totalPages}
-         stackable
       />;
     }
     return (

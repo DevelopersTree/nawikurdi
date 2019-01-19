@@ -9,7 +9,7 @@ import Router from './Router';
 const Navigation = (props) =>
   <Navbar>
     <NavLink to="/"/>
-    <NavLink to="/Home"/>
+    <NavLink to="/home"/>
   </Navbar>
 
 class App extends Component {

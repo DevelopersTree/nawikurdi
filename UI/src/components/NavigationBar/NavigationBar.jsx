@@ -16,11 +16,9 @@ class NavigationBar extends Component {
               }}>
 
                 <Menu.Item style={{textAlign:'center'}}>
-                  <Link to="/Home">
                     <Button style={{fontSize:25, color:'#666666', margin:0,background:'transparent',}}>
                     ماڵەوە
                     </Button>
-                  </Link>
                 </Menu.Item>
                 <Menu.Item style={{margin:0}}>
                   <AddNewName/>

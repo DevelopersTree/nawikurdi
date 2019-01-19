@@ -89,7 +89,7 @@ class Search extends Component {
           onChange={this.updateSearch.bind(this)}
           value={this.state.searchValue}
           size="huge"
-          style={{width:'50%', background:'white', color:'#D3D3D3', border:'none', borderRadius:0, textAlign:'right' }}
+          style={{minWidth:'50%', background:'white', color:'#D3D3D3', border:'none', borderRadius:0, textAlign:'right' }}
           label={<Dropdown onChange={this.updateDropdwon.bind(this)} style={{background:'white',color:'#D3D3D3', border:'none', borderRadius:0}} defaultValue={this.state.dropdwon} options={options} />}
           labelPosition='left'
           placeholder='ناوێک بنووسە بۆ گەڕان '
