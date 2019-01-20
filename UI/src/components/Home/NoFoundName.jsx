@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Grid, Image, Header, } from 'semantic-ui-react'
 
 
-// import Background from '../../resources/backgroundImage.jpg';
 class NoFoundName extends Component {
 
   render() {
@@ -19,5 +18,4 @@ class NoFoundName extends Component {
     );
   }
 }
-// this is comment
 export default NoFoundName;
