@@ -2,6 +2,11 @@ var express = require('express');
 var router = express.Router();
 var db = require('../config');
 
+router.get('/', (req, res) => {
+  res.json({
+    msg: 'welcome to nawikurdi api'
+  })
+})
 router.get('/:limit/:offset', function (req, res, next) {
   db('names').select().where({
     Deleted: 0,
