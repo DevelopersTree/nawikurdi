@@ -56,6 +56,15 @@ class Search extends Component {
     }
 
   }
+
+  componentDidMount() {
+    setTimeout( () => {
+      var addthisScript = document.createElement('script');
+      addthisScript.setAttribute('src', '//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d5e30dc1dd5614f"')
+      if (document.body) document.body.appendChild(addthisScript)
+    });
+
+  }
   render() {
     const options = [
       { key: 'M', value: 'M', text: 'كوڕ' },
@@ -66,13 +75,13 @@ class Search extends Component {
     return (
       <div stackable
         style={{
-          background: 'rgba(0, 0, 0, 0.6)',
+          background: 'rgba(0, 0, 0, 0.82)',
           padding: 0,
           margin: 0,
           height: 400,
           width: '100%',
           textAlign: 'center',
-          paddingTop: 120,
+          paddingTop: 65,
         }}
       >
         <h1 style={{ color: 'white', fontSize: 50, }}>
@@ -86,12 +95,12 @@ class Search extends Component {
           onChange={this.updateSearch.bind(this)}
           value={this.state.searchValue}
           size="huge"
-          style={{ minWidth: '50%', background: 'white', color: '#D3D3D3', border: 'none', borderRadius: 0, textAlign: 'right' }}
+          style={{ minWidth: '50%', background: 'white', color: '#D3D3D3', border: 'none', borderRadius: 5, textAlign: 'right' }}
           label={<Dropdown onChange={this.updateDropdwon.bind(this)} style={{ background: 'white', color: '#D3D3D3', border: 'none', borderRadius: 0 }} defaultValue={this.state.dropdwon} options={options} />}
           labelPosition='left'
           placeholder='ناوێک بنووسە بۆ گەڕان '
-
         />
+        <div style={{marginTop:25, direction: 'ltr'}} className="addthis_inline_share_toolbox" data-url={`http://nawikurdi.com`} data-title={`دۆزینەوەی ناوەکان و ماناکانیان ئاسانتر بووە`}></div>
       </div>
 
 

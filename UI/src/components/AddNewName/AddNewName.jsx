@@ -62,7 +62,7 @@ class ModalModalExample extends Component {
         stackable
         size="tiny"
         style={{ textAlign: 'right' }}
-        trigger={<Button style={{ background: 'transparent', }}>زیادبکە</Button>}
+        trigger={<Button style={{ background: 'transparent', }}>ناوێک بنێرە</Button>}
         dimmer={dimmer} open={open} onClose={this.close}
 
       >
@@ -71,7 +71,7 @@ class ModalModalExample extends Component {
           background: '#666666',
         }}>
           <h1>
-            ناوێک زیاد بکە
+            ناوێکی نوێ بنێرە
           </h1>
         </Modal.Header>
         <Modal.Content>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, } from 'semantic-ui-react';
+import { Grid, Button } from 'semantic-ui-react';
 
 
 class Footer extends Component {
@@ -16,12 +16,23 @@ class Footer extends Component {
 
         }}>
         <Grid.Row style={{
-          background: 'rgba(0, 0, 0, 0.6)',
-
+          background: 'rgba(0, 0, 0, 0.82)',
         }}>
-          <a href="https://devstree.io/" target="_blank">
-            <img src="https://devstree.io/wp-content/uploads/2018/10/white.png" size='mini' style={{ height: 100 }} />
-          </a>
+          <h3>پەیوەندیمان پێوە بکە یان بەشداربە لە گەشەپێدان ناوی کوردی سەرچاوە کراوەیە</h3>
+        </Grid.Row>
+        <Grid.Row style={{
+          background: 'rgba(0, 0, 0, 0.82)',
+        }}>
+          <div>
+            <Button circular color='black' as="a" href="https://github.com/DevelopersTree/nawikurdi.git" size="large" icon='github' />
+            <Button as="a" href="http://devstree.io" circular color='yellow' icon={<img src="https://devstree.io/wp-content/uploads/2018/10/black.png" size='mini' style={{ height: 50 }} />} />
+            <Button as="a" href="https://www.facebook.com/DevelopersTree" circular color='facebook' size="large" icon='facebook' />
+          </div>
+        </Grid.Row>
+        <Grid.Row style={{
+          background: 'rgba(0, 0, 0, 0.82)',
+        }}>
+          <h3 style={{fontSize: 15}}>ناوی کوردی {new Date().getFullYear()}</h3>
         </Grid.Row>
       </Grid>
     );

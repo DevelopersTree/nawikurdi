@@ -113,7 +113,6 @@ class Home extends Component {
           </Grid>
           <Container textAlign='center' style={{ marginTop: 50 }}>
             {result}
-
           </Container>
         </Container>
       </Container>

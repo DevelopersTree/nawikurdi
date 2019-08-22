@@ -18,7 +18,7 @@ class CardName extends Component {
 
     if (name.gender == 'F') {
       cardStyle = {
-        boxShadow: '0px 0px 10px #ffd0d7',
+        boxShadow: '0px 0px 5px #ffd0d7',
         textAlign: 'center',
         fontSize: 30,
       };
@@ -26,7 +26,7 @@ class CardName extends Component {
     }
     else if (name.gender == 'M') {
       cardStyle = {
-        boxShadow: '0px 0px 10px #c7d8e6',
+        boxShadow: '0px 0px 5px #c7d8e6',
         textAlign: 'center',
         fontSize: 30,
       }
@@ -35,7 +35,7 @@ class CardName extends Component {
     }
     else if (name.gender == 'O') {
       cardStyle = {
-        boxShadow: '0px 0px 10px #FF8435',
+        boxShadow: '0px 0px 5px #FF8435',
         textAlign: 'center',
         fontSize: 30,
       }
@@ -51,6 +51,7 @@ class CardName extends Component {
           <Card.Header style={{ fontSize: 25, color: '#666666' }}>
             {name.name}
           </Card.Header>
+          <Card.Description style={{fontSize: 13}}>{name.desc}</Card.Description>
         </Card.Content>
         <Card.Content extra style={{ textAlign: 'center', color: color }}>
           <div>
