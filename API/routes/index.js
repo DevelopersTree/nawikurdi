@@ -1,89 +1,101 @@
-var express = require('express');
-var router = express.Router();
-var db = require('../config');
+const express = require('express');
+
+const router = express.Router();
+const db = require('../config');
 
 router.get('/', (req, res) => {
   res.json({
-    msg: 'welcome to nawikurdi api'
-  })
-})
-router.get('/:limit/:offset', function (req, res, next) {
-  db('names').select().where({
-    Deleted: 0,
-    Activated: 1
-  }).limit(parseInt(req.params.limit)).offset(parseInt(req.params.offset)).then(function (names) {
-    res.status(200).json(names);
+    msg: 'welcome to nawikurdi api',
   });
 });
+router.get('/:limit/:offset', (req, res) => {
+  db('names').select().where({
+    Deleted: 0,
+    Activated: 1,
+  }).limit(parseInt(req.params.limit, 10))
+    .offset(parseInt(req.params.offset, 10))
+    .then((names) => {
+      res.status(200).json(names);
+    });
+});
 
-router.get('/numberOffRecord', function (req, res, next) {
+router.get('/numberOffRecord', (req, res) => {
   db('names').count({
-    numberOffRecord: 'nameId'
+    numberOffRecord: 'nameId',
   }).where({
     Deleted: 0,
-    Activated: 1
-  }).then(function ([numberOffRecord]) {
+    Activated: 1,
+  }).then(([numberOffRecord]) => {
     res.status(200).json(numberOffRecord);
   });
 });
 
-router.get('/:limit/:offset/:searchValue/:dropdwon', function (req, res, next) {
-  searchValueEdit = req.params.searchValue;
-  if (searchValueEdit == 'noSearchValue') {
+router.get('/:limit/:offset/:searchValue/:dropdwon', (req, res) => {
+  let searchValueEdit = req.params.searchValue;
+  if (searchValueEdit === 'noSearchValue') {
     searchValueEdit = '';
   }
-  if (req.params.dropdwon == 'F' || req.params.dropdwon == 'M' || req.params.dropdwon == 'O') {
+  if (req.params.dropdwon === 'F' || req.params.dropdwon === 'M' || req.params.dropdwon === 'O') {
     db('names').select().where({
       Deleted: 0,
       Activated: 1,
-      gender: req.params.dropdwon
-    }).whereRaw("name like ?", "%" + searchValueEdit + "%").limit(parseInt(req.params.limit)).offset(parseInt(req.params.offset)).then(function (names) {
-      db('names').count({
-        numberOffRecord: 'nameId'
-      }).where({
-        Deleted: 0,
-        Activated: 1,
-        gender: req.params.dropdwon
-      }).whereRaw("name like ?", "%" + searchValueEdit + "%").then(function (numberOffRecord) {
-        res.status(200).json({
-          names: names,
-          numberOffRecord: numberOffRecord[0]
-        });
+      gender: req.params.dropdwon,
+    }).whereRaw('name like ?', `%${searchValueEdit}%`)
+      .limit(parseInt(req.params.limit, 10))
+      .offset(parseInt(req.params.offset, 10))
+      .then((names) => {
+        db('names').count({
+          numberOffRecord: 'nameId',
+        }).where({
+          Deleted: 0,
+          Activated: 1,
+          gender: req.params.dropdwon,
+        }).whereRaw('name like ?', `%${searchValueEdit}%`)
+          .then((numberOffRecord) => {
+            res.status(200).json({
+              names,
+              numberOffRecord: numberOffRecord[0],
+            });
+          });
       });
-    });
   } else {
     db('names').select().where({
       Deleted: 0,
-      Activated: 1
-    }).whereRaw("name like ?", "%" + searchValueEdit + "%").limit(parseInt(req.params.limit)).offset(parseInt(req.params.offset)).then(function (names) {
-      db('names').count({
-        numberOffRecord: 'nameId'
-      }).where({
-        Deleted: 0,
-        Activated: 1
-      }).whereRaw("name like ?", "%" + searchValueEdit + "%").limit(parseInt(req.params.limit)).offset(parseInt(req.params.offset)).then(function (numberOffRecord) {
-        res.status(200).json({
-          names: names,
-          numberOffRecord: numberOffRecord[0]
-        });
+      Activated: 1,
+    }).whereRaw('name like ?', `%${searchValueEdit}%`)
+      .limit(parseInt(req.params.limit, 10))
+      .offset(parseInt(req.params.offset, 10))
+      .then((names) => {
+        db('names').count({
+          numberOffRecord: 'nameId',
+        }).where({
+          Deleted: 0,
+          Activated: 1,
+        }).whereRaw('name like ?', `%${searchValueEdit}%`)
+          .limit(parseInt(req.params.limit, 10))
+          .offset(parseInt(req.params.offset, 10))
+          .then((numberOffRecord) => {
+            res.status(200).json({
+              names,
+              numberOffRecord: numberOffRecord[0],
+            });
+          });
       });
-    });
   }
 });
 
-router.post('/addNewName', function (req, res, next) {
-  db("names").insert({
+router.post('/addNewName', (req, res) => {
+  db('names').insert({
     name: req.body.sendName,
     desc: req.body.meaningSendName,
-    gender: req.body.gender
-  }).then(function () {
+    gender: req.body.gender,
+  }).then(() => {
     res.status(200).json({
-      status: 1
-    })
-  }).catch(function (err) {
-    res.json(err)
+      status: 1,
+    });
+  }).catch((err) => {
+    res.json(err);
   });
-
 });
 
 module.exports = router;
