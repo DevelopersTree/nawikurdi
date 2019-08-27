@@ -50,7 +50,7 @@ router.get('/', paginateValidator, searchQueryValidator, genderValidator, (req, 
     countQuery.then(([records]) => {
       res.status(200).json({
         names,
-        recordCount: records,
+        recordCount: records.recordCount,
       });
     });
   });

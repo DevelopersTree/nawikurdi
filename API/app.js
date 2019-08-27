@@ -10,10 +10,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+/* bellow is legecy router */
 // const indexRouter = require('./routes/index');
+// app.use('/legecy', indexRouter);
+
 const v2Router = require('./routes/v2');
 
 app.use('/', v2Router);
-// app.use('/legecy', indexRouter);
 
 module.exports = app;
