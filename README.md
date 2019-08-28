@@ -22,6 +22,7 @@ public API link is `api.nawikurdi.com` routes
 | **offset** | an integer greater than -1 which indicates where to start fetching from dataset |
 | **q** | an optional parameter if it exists  the length of this search parameter should be between 1->255 it will search names similar to this search query  |
 | **gender** | an optional parameter if it exists  it should take one of these values `[O,F,M]`  |
+
 Note: `q`,`gender` parameters are optional and additive if you add them they will effect the result set together, `limit`,`offset` are relative to final dataset after applying wanted filter parameters
 
 ------------------------
