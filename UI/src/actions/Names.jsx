@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-const host = 'http://localhost:3001';
+const host = 'http://api.nawikurdi.com';
 export function loadNames(params) {
   return new Promise((resolve, reject) => {
     Axios.get(`${host}?${params}`).then((result) => {
