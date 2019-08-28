@@ -25,8 +25,9 @@ public API link is `api.nawikurdi.com` routes
 
 Note: `q`,`gender` parameters are optional and additive if you add them they will effect the result set together, `limit`,`offset` are relative to final dataset after applying wanted filter parameters
 
-------------------------
 `/records`  will fetch total number of active names in the dataset no params required
+
+------------------------
 
 ### POST routes
 `/` if you want to submit a new name to our dataset make a post request to main route you should provide some parameters in body of the post request
