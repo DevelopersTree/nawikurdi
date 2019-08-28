@@ -15,6 +15,7 @@ public API link is `api.nawikurdi.com` routes
 
 ### GET routes
 `/` main route will accept these query parameters
+
 |Parameter name  | description |
 |--|--|
 | **limit** | limit is positive integer greater than 0 and its `required` the api will throw 422 error code if it wasn't provided or have an invalid value this indicates how many records to fetch |
