@@ -14,7 +14,7 @@
     "express": "4.17.1",
     "express-validator": "6.1.1",
     "http-errors": "1.7.3",
-    "knex": "0.15.2",
+    "knex": "0.19.5",
     "morgan": "1.9.1",
     "mysql": "2.17.1",
     "mysql2": "1.6.5"
