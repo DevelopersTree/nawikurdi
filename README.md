@@ -22,6 +22,7 @@ public API link is `api.nawikurdi.com` routes
 | **offset** | an integer greater than -1 which indicates where to start fetching from dataset |
 | **q** | an optional parameter if it exists  the length of this search parameter should be between 1->255 it will search names similar to this search query  |
 | **gender** | an optional parameter if it exists  it should take one of these values `[O,F,M]`  |
+| **sort** | an optional parameter if it exists  it should take one of these values `[positive,negative]`  and it will sort by positive or negative votes on each name|
 
 Note: `q`,`gender` parameters are optional and additive if you add them they will effect the result set together, `limit`,`offset` are relative to final dataset after applying wanted filter parameters
 
@@ -37,6 +38,14 @@ Note: `q`,`gender` parameters are optional and additive if you add them they wil
 | **name** | name to be submited |
 | **desc** | a description of the name |
 | **gender** |it should take one of these values `[O,F,M]` `O` indicates that this name is for both genders  |
+
+`/vote` if you want to submit a new vote to our dataset make a post request to this route you should provide some parameters in body of the post request
+
+|Parameter name  | description |
+|--|--|
+| **name_id** | id of the name that you want to review |
+| **uid** | a unique id for the person that makes the request |
+| **impact** | is this vote have a positive or negative impact this will take one of  `[positive,negative]` |
 
 
 

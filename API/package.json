@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon ./bin/www",
+    "dbMigration": "npx knex migrate:latest --knexfile ./database/knexfile.js",
+    "dbSeeds": "npx knex seed:run --knexfile ./database/knexfile.js"
   },
   "dependencies": {
     "cookie-parser": "1.4.4",
