@@ -1,0 +1,60 @@
+<section class="grid grid-between names-container">
+    <div class="col col-5 col-md col-sm filters-grid">
+        <div class="social-container">
+            <h3>ناوی كوردی بڵاوبكه‌ره‌وه‌</h3>
+            
+            <div class="addthis_inline_share_toolbox_sl27"></div>
+        </div>
+        <div class="filters-container">
+            <h3> گه‌ران و پاڵاوتن</h3>
+            <div class="gender-filter-container">
+                <span>ره‌گه‌ز</span>
+                <div class="btn-group _4btn">
+                    <button>هه‌مووی <i class="fas fa-user-friends"></i></button>
+                    <button>هاوبه‌ش <i class="fas fa-neuter"></i></button>
+                    <button>كچ <i class="fas fa-female"></i></button>
+                    <button>كور <i class="fas fa-male"></i></button>
+                </div>
+            </div>
+            <div class="popularity-filter-container">
+                <span>به‌پێی ده‌نگ</span>
+                <div class="btn-group _3btn">
+                    <button>هه‌مووی <i class="fas fa-user-friends"></i></button>
+                    <button>كه‌مترین ده‌نگ <i class="fas fa-tint"></i></button>
+                    <button>به‌ناوبانگترین <i class="fas fa-fire"></i></button>
+                </div>
+            </div>
+            <div class="input-filter-container">
+                <span>ده‌سته‌واژه‌یه‌ك بنوسه‌</span>
+                <input type="text" class="input-filter" placeholder="سه‌ره‌تای ئه‌و ناوه‌ یان ده‌سته‌واژه‌یه‌ بنوسه‌ كه‌ له‌ خه‌یاڵته‌ وه‌ك ئار"/>
+            </div>
+        </div>
+        
+        
+    </div>
+    <div class="col col-7 col-md col-sm grid-around ">
+        <% names.forEach((record)=>{ %>
+            <% let gender = 'هاوبه‌ش'; 
+                if(record.gender == 'M' || record.gender == 'm') gender ='كور';
+                else if(record.gender == 'F' || record.gender == 'F') gender ='كچ';
+            %>
+            <a href="#" class="col col-3 col-md col-sm card-container">
+                <div class="card">
+                    <h3 class="card-title"><%= record.name %> ( <%= gender %> ) </h3>
+                    <p class="card-body">
+                        <%= record.desc %>
+                    ‌</p>
+                    <div class="card-footer">
+                        <div class="btn-group _3btn">
+                            <button><i class="far fa-thumbs-down"></i> ( <%= record.negative_votes %> )</button>
+                            <button><i class="far fa-thumbs-up"></i>   ( <%= record.positive_votes %> ) </button>
+                            <button><i class="far fa-heart"></i>  </button>
+                        </div>
+                    </div>
+                </div>
+                
+            </a>
+        <% }) %>
+    </div>    
+</section>
+<button onclick="topFunction()" id="to-top" title="Go to top"><i class="fas fa-chevron-up"></i></button>

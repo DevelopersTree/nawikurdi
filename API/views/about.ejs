@@ -1,0 +1,116 @@
+
+<%- include('templates/custom-header.ejs') %>
+
+<!-- BLOGS-PAGE -->
+<div class="blogs">
+    <div class="blogs-container max-width-1640">
+        <!-- PAGIN-ROW -->
+        <div class="paging-row padding-l-138">
+            <ul class="paging-menu">
+                <li><a href="/" alt="Home" class="lucid-r">Home -</a></li>
+                <li class="active"><a href="/about"  alt="about" class="lucid-r">About </a></li>
+            </ul>
+        </div>
+        <!-- SINGLE-WORK-CONTAINER -->
+        <div class="single-work-container padding-l-r-138">
+            <h1 class="single-work-title lucid-b-i green-color">Who are we?</h1>
+            <p class="single-service-content lucid-r dark-blue-color">
+                Lucid was founded in 2016, in Erbil, by a group of young people who had ambitions to create a pure local creative service.            
+            </p>
+            <div class="single-work-cover bg-img pos-relative" style="background-image: url('/images/cover-2.jpg');">
+                <div class="right-images-box bg-img" style="background-image: url('/images/Poster_2Grey.jpg');"></div>
+            </div>
+            <!-- SERVICE-ROW -->
+            <div class="service-row padding-l-r-138">
+                <p class="about-info lucid-r dark-blue-color">
+                    Lucid’s number one aim is to provide a state-of-the-art creative service in creating a high level quality service by a team of experts. 
+                    Lucid’s portfolio contains highly sophisticated developments that are accomplished by a team of skilled technicians and creative designers, 
+                    such as website design, mobile application, managing social media platforms and running digital marketing campaigns that meet with the client’s objective of online presence.
+                </p>
+            </div>
+            <div class="service-row padding-l-r-138">
+                <div class="service-col-1">
+                    <h1 class="service-title lucid-b-i green-color">Our vision</h1>
+                    <p class="service-info lucid-r dark-blue-color">
+                        is to encourage growth, sustainability and improvement in the world of technology locally.
+                    </p>
+                </div>
+                <div class="service-col-1">
+                    <h1 class="service-title lucid-b-i green-color">Our mission</h1>
+                    <p class="service-info lucid-r dark-blue-color">
+                        Our mission is to provide services to local markets by developing and implementing high quality digital platforms for current and potential clients.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Slogan Text -->
+            <div class="slogan-container">
+                <h1 class="lucid-slogan green-color lucid-b-i">We help you imagine</h1>
+                <h1 class="lucid-slogan green-color lucid-b-i">and craft your imagination.</h1>
+            </div>
+
+            <!-- Lucid Services -->
+            <div class="about-service-container padding-l-r-138 pos-relative">
+                <div class="about-service-box">
+                    <a href="/services/creative-services" alt="creative-service" class="about-service">
+                        <span class="about-service-link orange-color lucid-r">Creative Services</span>
+                        <span><img src="/images/chevron-right.svg" alt=""></span>
+                    </a>
+                    <a href="/services/it-solutions" alt="IT Solutions" class="about-service">
+                        <span class="about-service-link orange-color lucid-r">IT Solutions</span>
+                        <span><img src="/images/chevron-right.svg" alt=""></span>
+                    </a>
+                    <a href="/services/digital-marketing-services" alt="Digital Marketing Services" class="about-service">
+                        <span class="about-service-link orange-color lucid-r">Digital Marketing Service</span>
+                        <span><img src="/images/chevron-right.svg" alt=""></span>
+                    </a>
+                </div>
+                <img src="/images/green-path.svg" class="green-path" alt="">
+                <img src="/images/orange-path.svg" class="orange-path" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Our Team Section -->
+<div class="our-team-section pos-relative">
+    <div class="out-team-container max-width-1640 padding-l-138">
+        <h1 class="our-team-title lucid-b-i green-color padding-l-138"> Our Team </h1>
+        <p class="our-team-content lucid-r white-color padding-l-138">
+            We have a team of creative professional, who are always on top of their game. 
+        </p>
+
+        <div class="our-team-row">
+            <% teammembers.forEach((member)=>{ %>
+                <div class="our-team-col">
+                    <div class="our-team-card">
+                        <div class="our-team-image bg-img" style="background-image: url('<%= PUBLIC_WEBSITE_LINK %>/<%= uploads %>/<%= member.cover_id %>');"></div>
+                        <p class="our-team-name lucid-b green-color text-center"><%= member.name %></p>
+                        <p class="our-team-role lucid-r white-color text-center"><%= member.role %></p>
+                    </div>
+                </div>
+            <% }) %>            
+        </div>
+    </div>
+</div>
+
+<div class="our-client-section white-bg-color">
+    <div class="our-client-container about-page max-width-1640 padding-l-r-138">
+        <div class="our-client-row">
+            <div class="our-client-col-1">
+                <h1 class="our-client-title lucid-b-i green-color">
+                    <span>We have a long lasting</span>
+                    <span>relationship with our clients</span>
+                </h1>
+                <!-- <p class="our-client-content lucid-r">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consequat ipsum nec nibh rhoncus auctor. 
+                </p> -->
+            </div>
+            <div class="our-client-col-2">
+                <% brands.forEach((brand)=>{ %>
+                    <img src="<%= PUBLIC_WEBSITE_LINK %>/<%= uploads %>/<%= brand.cover_id %>"  class="our-client-logo" alt="<%= brand.name %>">
+                <% }) %>                    
+            </div>
+        </div>
+    </div>
+</div>
