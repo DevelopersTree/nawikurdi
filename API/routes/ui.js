@@ -23,6 +23,17 @@ function loadIndexData (req){
     };
   })
 }
+function loadFavoritesData (req){
+  return Promise.all([
+    getBaseRecordCount()
+  ])
+  .then((values)=>{
+    const [[records]] = values;
+    return {
+      records: records.recordCount || 0,
+    };
+  })
+}
 
 // function loadSingleServiceData (id){
 //   const seoNames = ["it-solutions_seo.txt", "creative-service_seo.txt", "digital-marketing_seo.txt"];
@@ -46,6 +57,16 @@ router.get('/', async function(req, res, next) {
     view: 'index',
     title: 'به‌خێربێن بۆ ماڵپه‌ری ناوی كوردی',
     ...indexData,
+    slugify,
+  });
+});
+router.get('/favorites', async function(req, res, next) {
+  const favoritesData = await loadFavoritesData(req);
+
+  render(req, res, {
+    view: 'favorites',
+    title: 'ماڵپه‌ری ناوی كوردی | دڵخوازه‌كان',
+    ...favoritesData,
     slugify,
   });
 });

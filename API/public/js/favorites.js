@@ -1,41 +1,9 @@
-import {debounce} from './general';
 import superagent from 'superagent';
 import $ from 'jquery';
 import { Notyf } from 'notyf';
 // Create an instance of Notyf
 const notyf = new Notyf();
 
-// scroll logic
-let mybutton = document.getElementById("to-top");
-window.onscroll = function() {scrollFunction()};
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
-function topFunction() {
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
-// end of scroll logic
-
-const params = {
-    limit: 10,
-    offset: 0,
-};
-
-function load(params){
-    return superagent
-        .get(`/api`)
-        .query(params)
-        .then((data)=>{
-            return data.body.names;
-        }).catch((err)=>{
-            return [];
-        });
-}
 
 function vote(data, cb = ()=>{}){
     return superagent
@@ -82,16 +50,7 @@ function display(container, data, mode = 'append'){
     $(container)[alterMethod](html);
     return html;
 }
-function showLoader(){
-    $('.names-container').append(`
-        <a class="col col-3 col-md col-sm loader" >
-            <h3 class="txt-center"><i class="fas fa-spinner fa-spin"></i></h3>
-        </a> 
-    `);
-}
-function hideLoader(){
-    $('.loader').remove()
-}
+
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -107,78 +66,21 @@ function getCookie(cname) {
     }
     return "";
 }
+
 module.exports = {
     init: function() {
-        window.topFunction = topFunction;
-
-        $(window).scroll(function(){
-            const triggerMargin = 100;
-            if ($(window).scrollTop() >= $(document).height()-$(window).height() - triggerMargin ){
-                let page = $('body').data('page') || 1;
-                const calculatedOffset = params.limit*page;
-                params.offset = calculatedOffset;
-                $('body').data('page', ++page);
-                showLoader();
-                load(params).then((data)=>{
-                    hideLoader();
-                    display('.names-container', data, 'append');
-                });
+        let favs = localStorage.getItem('favs');
+        try{
+            favs = JSON.parse(favs);
+            for (var key in favs) {
+                if (favs.hasOwnProperty(key)) {
+                  var val = favs[key];
+                  $('.names-container').append(val)
+                }
             }
-        });
-        $('.input-filter').keyup(debounce(function(){
-            $('body').data('page', 1);
-            params.offset = 0;
-            const val = $(this).val();
-            if(val.trim()!= '') params.q = val;
-            else delete params.q;
-            showLoader()
-            load(params).then((data)=>{
-                hideLoader();
-                display('.names-container', data, 'overwrite');
-            });
-            
-        }, 300));
-        $('.gender-filter').click(function(){
-            $('body').data('page', 1);
-            params.offset = 0;
-            const val = `${$(this).data('value')}`;
-            if(val.trim()!= '-1') params.gender = val;
-            else delete params.gender;
-            $(".gender-filter").removeClass("active");
-            $(this).addClass("active");
-            showLoader();
-            load(params).then((data)=>{
-                hideLoader();
-                display('.names-container', data, 'overwrite');
-            });
-            
-        });
-        $('.popularity-filter').click(function(){
-            $('body').data('page', 1);
-            params.offset = 0;
-            const val = `${$(this).data('value')}`;
-            if(val.trim()!= '-1') params.sort = val;
-            else delete params.sort;
-            $(".popularity-filter").removeClass("active");
-            $(this).addClass("active");
-            showLoader();
-            load(params).then((data)=>{
-                hideLoader();
-                display('.names-container', data, 'overwrite');
-            });
-            
-        });
-        $('.btn-showmore').click(function(){
-            let page = $(this).data('page') || 1;
-            const calculatedOffset = params.limit*page;
-            params.offset = calculatedOffset;
-            $(this).data('page', ++page);
-            load(params).then((data)=>{
-                
-                display('.names-container', data, 'append');
-            });
-        });
-
+        }catch(e){
+            console.log(e)
+        }
         $(document).delegate('.up-vote', 'click', function(){
             const btn = this;
             vote({

@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const helmet = require('helmet');
 const compression = require('compression');
 const path = require('path');
+const uniqid = require('uniqid');
 const favicon = require('serve-favicon');
 
 const express = require('express');
@@ -25,12 +26,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.json({ limit: '500mb' }));
 app.use(express.urlencoded({ extended: true, limit: '20mb' }));
-app.use(cookieParser("some random strings that comes to mind hsagdhja213242"));
+app.use(cookieParser(process.env.cookie_secret));
 
 
 
 const ApiRouter = require('./routes/api');
 const UiRouter = require('./routes/ui');
+
+app.use((req,res,next)=>{
+    if(!req.cookies.uid){
+      const id = uniqid();
+      res.cookie('uid', id);
+    }
+    next();
+});
 
 app.use('/api/', ApiRouter);
 app.use('/', UiRouter);

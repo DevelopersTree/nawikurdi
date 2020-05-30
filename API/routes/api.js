@@ -1,5 +1,4 @@
 const express = require('express');
-
 const router = express.Router();
 const paginateValidator = require('../middlewares/validators/common/paginate');
 const searchQueryValidator = require('../middlewares/validators/common/searchQuery');

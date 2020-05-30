@@ -25,7 +25,7 @@
             </div>
             <div class="input-filter-container">
                 <span>ده‌سته‌واژه‌یه‌ك بنوسه‌ بۆ گه‌ران</span>
-                <input type="text" class="input-filter" placeholder="سه‌ره‌تای ئه‌و ناوه‌ یان ده‌سته‌واژه‌یه‌ بنوسه‌ كه‌ له‌ خه‌یاڵته‌ وه‌ك ئار"/>
+                <input type="text" class="input-filter" placeholder="سه‌ره‌تای ئه‌و ناوه‌ یان ده‌سته‌واژه‌یه‌ بنوسه‌ كه‌ له‌ خه‌یاڵته‌ وه‌ك ئار..."/>
             </div>
         </div>
 
@@ -66,9 +66,9 @@
                     ‌</p>
                     <div class="card-footer">
                         <div class="btn-group _3btn">
-                            <button><i class="far fa-thumbs-down"></i> ( <%= record.negative_votes %> )</button>
-                            <button><i class="far fa-thumbs-up"></i>   ( <%= record.positive_votes %> ) </button>
-                            <button><i class="far fa-heart"></i>  </button>
+                            <button class="down-vote" data-id="<%= record.nameId %>"><i class="far fa-thumbs-down"></i> ( <%= record.negative_votes %> )</button>
+                            <button class="up-vote" data-id="<%= record.nameId %>"><i class="far fa-thumbs-up "></i>   ( <%= record.positive_votes %> ) </button>
+                            <button class="make-fav" data-id="<%= record.nameId %>"><i class="far fa-heart"></i>  </button>
                         </div>
                     </div>
                 </div>

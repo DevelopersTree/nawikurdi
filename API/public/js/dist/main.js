@@ -2564,67 +2564,7 @@ request.put = function (url, data, fn) {
   if (fn) req.end(fn);
   return req;
 };
-},{"component-emitter":"../../node_modules/component-emitter/index.js","fast-safe-stringify":"../../node_modules/fast-safe-stringify/index.js","./request-base":"../../node_modules/superagent/lib/request-base.js","./is-object":"../../node_modules/superagent/lib/is-object.js","./response-base":"../../node_modules/superagent/lib/response-base.js","./agent-base":"../../node_modules/superagent/lib/agent-base.js"}],"../../node_modules/slugify/slugify.js":[function(require,module,exports) {
-var define;
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-;
-
-(function (name, root, factory) {
-  if ((typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object') {
-    module.exports = factory();
-    module.exports['default'] = factory();
-  }
-  /* istanbul ignore next */
-  else if (typeof define === 'function' && define.amd) {
-      define(factory);
-    } else {
-      root[name] = factory();
-    }
-})('slugify', this, function () {
-  var charMap = JSON.parse('{"$":"dollar","%":"percent","&":"and","<":"less",">":"greater","|":"or","¢":"cent","£":"pound","¤":"currency","¥":"yen","©":"(c)","ª":"a","®":"(r)","º":"o","À":"A","Á":"A","Â":"A","Ã":"A","Ä":"A","Å":"A","Æ":"AE","Ç":"C","È":"E","É":"E","Ê":"E","Ë":"E","Ì":"I","Í":"I","Î":"I","Ï":"I","Ð":"D","Ñ":"N","Ò":"O","Ó":"O","Ô":"O","Õ":"O","Ö":"O","Ø":"O","Ù":"U","Ú":"U","Û":"U","Ü":"U","Ý":"Y","Þ":"TH","ß":"ss","à":"a","á":"a","â":"a","ã":"a","ä":"a","å":"a","æ":"ae","ç":"c","è":"e","é":"e","ê":"e","ë":"e","ì":"i","í":"i","î":"i","ï":"i","ð":"d","ñ":"n","ò":"o","ó":"o","ô":"o","õ":"o","ö":"o","ø":"o","ù":"u","ú":"u","û":"u","ü":"u","ý":"y","þ":"th","ÿ":"y","Ā":"A","ā":"a","Ă":"A","ă":"a","Ą":"A","ą":"a","Ć":"C","ć":"c","Č":"C","č":"c","Ď":"D","ď":"d","Đ":"DJ","đ":"dj","Ē":"E","ē":"e","Ė":"E","ė":"e","Ę":"e","ę":"e","Ě":"E","ě":"e","Ğ":"G","ğ":"g","Ģ":"G","ģ":"g","Ĩ":"I","ĩ":"i","Ī":"i","ī":"i","Į":"I","į":"i","İ":"I","ı":"i","Ķ":"k","ķ":"k","Ļ":"L","ļ":"l","Ľ":"L","ľ":"l","Ł":"L","ł":"l","Ń":"N","ń":"n","Ņ":"N","ņ":"n","Ň":"N","ň":"n","Ő":"O","ő":"o","Œ":"OE","œ":"oe","Ŕ":"R","ŕ":"r","Ř":"R","ř":"r","Ś":"S","ś":"s","Ş":"S","ş":"s","Š":"S","š":"s","Ţ":"T","ţ":"t","Ť":"T","ť":"t","Ũ":"U","ũ":"u","Ū":"u","ū":"u","Ů":"U","ů":"u","Ű":"U","ű":"u","Ų":"U","ų":"u","Ŵ":"W","ŵ":"w","Ŷ":"Y","ŷ":"y","Ÿ":"Y","Ź":"Z","ź":"z","Ż":"Z","ż":"z","Ž":"Z","ž":"z","ƒ":"f","Ơ":"O","ơ":"o","Ư":"U","ư":"u","ǈ":"LJ","ǉ":"lj","ǋ":"NJ","ǌ":"nj","Ș":"S","ș":"s","Ț":"T","ț":"t","˚":"o","Ά":"A","Έ":"E","Ή":"H","Ί":"I","Ό":"O","Ύ":"Y","Ώ":"W","ΐ":"i","Α":"A","Β":"B","Γ":"G","Δ":"D","Ε":"E","Ζ":"Z","Η":"H","Θ":"8","Ι":"I","Κ":"K","Λ":"L","Μ":"M","Ν":"N","Ξ":"3","Ο":"O","Π":"P","Ρ":"R","Σ":"S","Τ":"T","Υ":"Y","Φ":"F","Χ":"X","Ψ":"PS","Ω":"W","Ϊ":"I","Ϋ":"Y","ά":"a","έ":"e","ή":"h","ί":"i","ΰ":"y","α":"a","β":"b","γ":"g","δ":"d","ε":"e","ζ":"z","η":"h","θ":"8","ι":"i","κ":"k","λ":"l","μ":"m","ν":"n","ξ":"3","ο":"o","π":"p","ρ":"r","ς":"s","σ":"s","τ":"t","υ":"y","φ":"f","χ":"x","ψ":"ps","ω":"w","ϊ":"i","ϋ":"y","ό":"o","ύ":"y","ώ":"w","Ё":"Yo","Ђ":"DJ","Є":"Ye","І":"I","Ї":"Yi","Ј":"J","Љ":"LJ","Њ":"NJ","Ћ":"C","Џ":"DZ","А":"A","Б":"B","В":"V","Г":"G","Д":"D","Е":"E","Ж":"Zh","З":"Z","И":"I","Й":"J","К":"K","Л":"L","М":"M","Н":"N","О":"O","П":"P","Р":"R","С":"S","Т":"T","У":"U","Ф":"F","Х":"H","Ц":"C","Ч":"Ch","Ш":"Sh","Щ":"Sh","Ъ":"U","Ы":"Y","Ь":"","Э":"E","Ю":"Yu","Я":"Ya","а":"a","б":"b","в":"v","г":"g","д":"d","е":"e","ж":"zh","з":"z","и":"i","й":"j","к":"k","л":"l","м":"m","н":"n","о":"o","п":"p","р":"r","с":"s","т":"t","у":"u","ф":"f","х":"h","ц":"c","ч":"ch","ш":"sh","щ":"sh","ъ":"u","ы":"y","ь":"","э":"e","ю":"yu","я":"ya","ё":"yo","ђ":"dj","є":"ye","і":"i","ї":"yi","ј":"j","љ":"lj","њ":"nj","ћ":"c","ѝ":"u","џ":"dz","Ґ":"G","ґ":"g","Ғ":"GH","ғ":"gh","Қ":"KH","қ":"kh","Ң":"NG","ң":"ng","Ү":"UE","ү":"ue","Ұ":"U","ұ":"u","Һ":"H","һ":"h","Ә":"AE","ә":"ae","Ө":"OE","ө":"oe","฿":"baht","ა":"a","ბ":"b","გ":"g","დ":"d","ე":"e","ვ":"v","ზ":"z","თ":"t","ი":"i","კ":"k","ლ":"l","მ":"m","ნ":"n","ო":"o","პ":"p","ჟ":"zh","რ":"r","ს":"s","ტ":"t","უ":"u","ფ":"f","ქ":"k","ღ":"gh","ყ":"q","შ":"sh","ჩ":"ch","ც":"ts","ძ":"dz","წ":"ts","ჭ":"ch","ხ":"kh","ჯ":"j","ჰ":"h","Ẁ":"W","ẁ":"w","Ẃ":"W","ẃ":"w","Ẅ":"W","ẅ":"w","ẞ":"SS","Ạ":"A","ạ":"a","Ả":"A","ả":"a","Ấ":"A","ấ":"a","Ầ":"A","ầ":"a","Ẩ":"A","ẩ":"a","Ẫ":"A","ẫ":"a","Ậ":"A","ậ":"a","Ắ":"A","ắ":"a","Ằ":"A","ằ":"a","Ẳ":"A","ẳ":"a","Ẵ":"A","ẵ":"a","Ặ":"A","ặ":"a","Ẹ":"E","ẹ":"e","Ẻ":"E","ẻ":"e","Ẽ":"E","ẽ":"e","Ế":"E","ế":"e","Ề":"E","ề":"e","Ể":"E","ể":"e","Ễ":"E","ễ":"e","Ệ":"E","ệ":"e","Ỉ":"I","ỉ":"i","Ị":"I","ị":"i","Ọ":"O","ọ":"o","Ỏ":"O","ỏ":"o","Ố":"O","ố":"o","Ồ":"O","ồ":"o","Ổ":"O","ổ":"o","Ỗ":"O","ỗ":"o","Ộ":"O","ộ":"o","Ớ":"O","ớ":"o","Ờ":"O","ờ":"o","Ở":"O","ở":"o","Ỡ":"O","ỡ":"o","Ợ":"O","ợ":"o","Ụ":"U","ụ":"u","Ủ":"U","ủ":"u","Ứ":"U","ứ":"u","Ừ":"U","ừ":"u","Ử":"U","ử":"u","Ữ":"U","ữ":"u","Ự":"U","ự":"u","Ỳ":"Y","ỳ":"y","Ỵ":"Y","ỵ":"y","Ỷ":"Y","ỷ":"y","Ỹ":"Y","ỹ":"y","‘":"\'","’":"\'","“":"\\\"","”":"\\\"","†":"+","•":"*","…":"...","₠":"ecu","₢":"cruzeiro","₣":"french franc","₤":"lira","₥":"mill","₦":"naira","₧":"peseta","₨":"rupee","₩":"won","₪":"new shequel","₫":"dong","€":"euro","₭":"kip","₮":"tugrik","₯":"drachma","₰":"penny","₱":"peso","₲":"guarani","₳":"austral","₴":"hryvnia","₵":"cedi","₸":"kazakhstani tenge","₹":"indian rupee","₽":"russian ruble","₿":"bitcoin","℠":"sm","™":"tm","∂":"d","∆":"delta","∑":"sum","∞":"infinity","♥":"love","元":"yuan","円":"yen","﷼":"rial"}');
-  var locales = JSON.parse('{"vi":{"Đ":"D","đ":"d"}}');
-
-  function replace(string, options) {
-    if (typeof string !== 'string') {
-      throw new Error('slugify: string argument expected');
-    }
-
-    options = typeof options === 'string' ? {
-      replacement: options
-    } : options || {};
-    var locale = locales[options.locale] || {};
-    var replacement = options.replacement || '-';
-    var slug = string.split('') // replace characters based on charMap
-    .reduce(function (result, ch) {
-      return result + (locale[ch] || charMap[ch] || ch);
-    }, '') // remove not allowed characters
-    .replace(options.remove || /[^\w\s$*_+~.()'"!\-:@]+/g, '') // trim leading/trailing spaces
-    .trim() // convert spaces to replacement character
-    // also remove duplicates of the replacement character
-    .replace(new RegExp('[\\s' + replacement + ']+', 'g'), replacement);
-
-    if (options.lower) {
-      slug = slug.toLowerCase();
-    }
-
-    if (options.strict) {
-      // remove anything besides letters, numbers, and the replacement char
-      slug = slug.replace(new RegExp('[^a-zA-Z0-9' + replacement + ']', 'g'), '');
-    }
-
-    return slug;
-  }
-
-  replace.extend = function (customMap) {
-    for (var key in customMap) {
-      charMap[key] = customMap[key];
-    }
-  };
-
-  return replace;
-});
-},{}],"../../node_modules/process/browser.js":[function(require,module,exports) {
+},{"component-emitter":"../../node_modules/component-emitter/index.js","fast-safe-stringify":"../../node_modules/fast-safe-stringify/index.js","./request-base":"../../node_modules/superagent/lib/request-base.js","./is-object":"../../node_modules/superagent/lib/is-object.js","./response-base":"../../node_modules/superagent/lib/response-base.js","./agent-base":"../../node_modules/superagent/lib/agent-base.js"}],"../../node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -13710,20 +13650,584 @@ if ( typeof noGlobal === "undefined" ) {
 return jQuery;
 } );
 
-},{"process":"../../node_modules/process/browser.js"}],"index.js":[function(require,module,exports) {
+},{"process":"../../node_modules/process/browser.js"}],"../../node_modules/notyf/notyf.es.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.NotyfView = exports.NotyfNotification = exports.NotyfEvent = exports.NotyfArrayEvent = exports.NotyfArray = exports.Notyf = exports.DEFAULT_OPTIONS = void 0;
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+var __assign = function () {
+  __assign = Object.assign || function __assign(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var NotyfNotification =
+/** @class */
+function () {
+  function NotyfNotification(options) {
+    this.options = options;
+  }
+
+  return NotyfNotification;
+}();
+
+exports.NotyfNotification = NotyfNotification;
+var NotyfArrayEvent;
+exports.NotyfArrayEvent = NotyfArrayEvent;
+
+(function (NotyfArrayEvent) {
+  NotyfArrayEvent[NotyfArrayEvent["Add"] = 0] = "Add";
+  NotyfArrayEvent[NotyfArrayEvent["Remove"] = 1] = "Remove";
+})(NotyfArrayEvent || (exports.NotyfArrayEvent = NotyfArrayEvent = {}));
+
+var NotyfArray =
+/** @class */
+function () {
+  function NotyfArray() {
+    this.notifications = [];
+  }
+
+  NotyfArray.prototype.push = function (elem) {
+    this.notifications.push(elem);
+    this.updateFn(elem, NotyfArrayEvent.Add, this.notifications);
+  };
+
+  NotyfArray.prototype.splice = function (index, num) {
+    var elem = this.notifications.splice(index, num)[0];
+    this.updateFn(elem, NotyfArrayEvent.Remove, this.notifications);
+    return elem;
+  };
+
+  NotyfArray.prototype.indexOf = function (elem) {
+    return this.notifications.indexOf(elem);
+  };
+
+  NotyfArray.prototype.onUpdate = function (fn) {
+    this.updateFn = fn;
+  };
+
+  return NotyfArray;
+}();
+
+exports.NotyfArray = NotyfArray;
+var NotyfEvent;
+exports.NotyfEvent = NotyfEvent;
+
+(function (NotyfEvent) {
+  NotyfEvent[NotyfEvent["Dismiss"] = 0] = "Dismiss";
+})(NotyfEvent || (exports.NotyfEvent = NotyfEvent = {}));
+
+var DEFAULT_OPTIONS = {
+  types: [{
+    type: 'success',
+    className: 'notyf__toast--success',
+    backgroundColor: '#3dc763',
+    icon: {
+      className: 'notyf__icon--success',
+      tagName: 'i'
+    }
+  }, {
+    type: 'error',
+    className: 'notyf__toast--error',
+    backgroundColor: '#ed3d3d',
+    icon: {
+      className: 'notyf__icon--error',
+      tagName: 'i'
+    }
+  }],
+  duration: 2000,
+  ripple: true,
+  position: {
+    x: 'right',
+    y: 'bottom'
+  },
+  dismissible: false
+};
+exports.DEFAULT_OPTIONS = DEFAULT_OPTIONS;
+
+var NotyfView =
+/** @class */
+function () {
+  function NotyfView() {
+    this.notifications = [];
+    this.X_POSITION_FLEX_MAP = {
+      left: 'flex-start',
+      center: 'center',
+      right: 'flex-end'
+    };
+    this.Y_POSITION_FLEX_MAP = {
+      top: 'flex-start',
+      center: 'center',
+      bottom: 'flex-end'
+    }; // Creates the main notifications container
+
+    var docFrag = document.createDocumentFragment();
+
+    var notyfContainer = this._createHTLMElement({
+      tagName: 'div',
+      className: 'notyf'
+    });
+
+    docFrag.appendChild(notyfContainer);
+    document.body.appendChild(docFrag);
+    this.container = notyfContainer; // Identifies the main animation end event
+
+    this.animationEndEventName = this._getAnimationEndEventName();
+
+    this._createA11yContainer();
+  }
+
+  NotyfView.prototype.on = function (event, cb) {
+    var _a;
+
+    this.events = __assign(__assign({}, this.events), (_a = {}, _a[event] = cb, _a));
+  };
+
+  NotyfView.prototype.update = function (notification, type) {
+    if (type === NotyfArrayEvent.Add) {
+      this.addNotification(notification);
+    } else if (type === NotyfArrayEvent.Remove) {
+      this.removeNotification(notification);
+    }
+  };
+
+  NotyfView.prototype.removeNotification = function (notification) {
+    var _this = this;
+
+    var renderedNotification = this._popRenderedNotification(notification);
+
+    var node;
+
+    if (!renderedNotification) {
+      return;
+    }
+
+    node = renderedNotification.node;
+    node.classList.add('notyf__toast--disappear');
+    var handleEvent;
+    node.addEventListener(this.animationEndEventName, handleEvent = function (event) {
+      if (event.target === node) {
+        node.removeEventListener(_this.animationEndEventName, handleEvent);
+
+        _this.container.removeChild(node);
+      }
+    });
+  };
+
+  NotyfView.prototype.addNotification = function (notification) {
+    var node = this._renderNotification(notification);
+
+    this.notifications.push({
+      notification: notification,
+      node: node
+    }); // For a11y purposes, we still want to announce that there's a notification in the screen
+    // even if it comes with no message.
+
+    this._announce(notification.options.message || 'Notification');
+  };
+
+  NotyfView.prototype._renderNotification = function (notification) {
+    var _a;
+
+    var card = this._buildNotificationCard(notification);
+
+    var className = notification.options.className;
+
+    if (className) {
+      (_a = card.classList).add.apply(_a, className.split(' '));
+    }
+
+    this.container.appendChild(card);
+    return card;
+  };
+
+  NotyfView.prototype._popRenderedNotification = function (notification) {
+    var idx = -1;
+
+    for (var i = 0; i < this.notifications.length && idx < 0; i++) {
+      if (this.notifications[i].notification === notification) {
+        idx = i;
+      }
+    }
+
+    if (idx !== -1) {
+      return this.notifications.splice(idx, 1)[0];
+    }
+
+    return;
+  };
+
+  NotyfView.prototype.getXPosition = function (options) {
+    var _a;
+
+    return ((_a = options === null || options === void 0 ? void 0 : options.position) === null || _a === void 0 ? void 0 : _a.x) || 'right';
+  };
+
+  NotyfView.prototype.getYPosition = function (options) {
+    var _a;
+
+    return ((_a = options === null || options === void 0 ? void 0 : options.position) === null || _a === void 0 ? void 0 : _a.y) || 'bottom';
+  };
+
+  NotyfView.prototype.adjustContainerAlignment = function (options) {
+    var align = this.X_POSITION_FLEX_MAP[this.getXPosition(options)];
+    var justify = this.Y_POSITION_FLEX_MAP[this.getYPosition(options)];
+    var style = this.container.style;
+    style.setProperty('justify-content', justify);
+    style.setProperty('align-items', align);
+  };
+
+  NotyfView.prototype._buildNotificationCard = function (notification) {
+    var _this = this;
+
+    var options = notification.options;
+    var iconOpts = options.icon; // Adjust container according to position (e.g. top-left, bottom-center, etc)
+
+    this.adjustContainerAlignment(options); // Create elements
+
+    var notificationElem = this._createHTLMElement({
+      tagName: 'div',
+      className: 'notyf__toast'
+    });
+
+    var ripple = this._createHTLMElement({
+      tagName: 'div',
+      className: 'notyf__ripple'
+    });
+
+    var wrapper = this._createHTLMElement({
+      tagName: 'div',
+      className: 'notyf__wrapper'
+    });
+
+    var message = this._createHTLMElement({
+      tagName: 'div',
+      className: 'notyf__message'
+    });
+
+    message.innerHTML = options.message || '';
+    var color = options.background || options.backgroundColor; // Build the icon and append it to the card
+
+    if (iconOpts && typeof iconOpts === 'object') {
+      var iconContainer = this._createHTLMElement({
+        tagName: 'div',
+        className: 'notyf__icon'
+      });
+
+      var icon = this._createHTLMElement({
+        tagName: iconOpts.tagName || 'i',
+        className: iconOpts.className,
+        text: iconOpts.text
+      });
+
+      if (color) {
+        icon.style.color = color;
+      }
+
+      iconContainer.appendChild(icon);
+      wrapper.appendChild(iconContainer);
+    }
+
+    wrapper.appendChild(message);
+    notificationElem.appendChild(wrapper); // Add ripple if applicable, else just paint the full toast
+
+    if (color) {
+      if (options.ripple) {
+        ripple.style.background = color;
+        notificationElem.appendChild(ripple);
+      } else {
+        notificationElem.style.background = color;
+      }
+    } // Add dismiss button
+
+
+    if (options.dismissible) {
+      var dismissWrapper = this._createHTLMElement({
+        tagName: 'div',
+        className: 'notyf__dismiss'
+      });
+
+      var dismissButton = this._createHTLMElement({
+        tagName: 'button',
+        className: 'notyf__dismiss-btn'
+      });
+
+      dismissWrapper.appendChild(dismissButton);
+      wrapper.appendChild(dismissWrapper);
+      notificationElem.classList.add("notyf__toast--dismissible");
+      dismissButton.addEventListener('click', function () {
+        var _a;
+
+        return (_a = _this.events) === null || _a === void 0 ? void 0 : _a[NotyfEvent.Dismiss](notification);
+      });
+    } // Adjust margins depending on whether its an upper or lower notification
+
+
+    var className = this.getYPosition(options) === 'top' ? 'upper' : 'lower';
+    notificationElem.classList.add("notyf__toast--" + className);
+    return notificationElem;
+  };
+
+  NotyfView.prototype._createHTLMElement = function (_a) {
+    var tagName = _a.tagName,
+        className = _a.className,
+        text = _a.text;
+    var elem = document.createElement(tagName);
+
+    if (className) {
+      elem.className = className;
+    }
+
+    elem.textContent = text || null;
+    return elem;
+  };
+  /**
+   * Creates an invisible container which will announce the notyfs to
+   * screen readers
+   */
+
+
+  NotyfView.prototype._createA11yContainer = function () {
+    var a11yContainer = this._createHTLMElement({
+      tagName: 'div',
+      className: 'notyf-announcer'
+    });
+
+    a11yContainer.setAttribute('aria-atomic', 'true');
+    a11yContainer.setAttribute('aria-live', 'polite'); // Set the a11y container to be visible hidden. Can't use display: none as
+    // screen readers won't read it.
+
+    a11yContainer.style.border = '0';
+    a11yContainer.style.clip = 'rect(0 0 0 0)';
+    a11yContainer.style.height = '1px';
+    a11yContainer.style.margin = '-1px';
+    a11yContainer.style.overflow = 'hidden';
+    a11yContainer.style.padding = '0';
+    a11yContainer.style.position = 'absolute';
+    a11yContainer.style.width = '1px';
+    a11yContainer.style.outline = '0';
+    document.body.appendChild(a11yContainer);
+    this.a11yContainer = a11yContainer;
+  };
+  /**
+   * Announces a message to screenreaders.
+   */
+
+
+  NotyfView.prototype._announce = function (message) {
+    var _this = this;
+
+    this.a11yContainer.textContent = ''; // This 100ms timeout is necessary for some browser + screen-reader combinations:
+    // - Both JAWS and NVDA over IE11 will not announce anything without a non-zero timeout.
+    // - With Chrome and IE11 with NVDA or JAWS, a repeated (identical) message won't be read a
+    //   second time without clearing and then using a non-zero delay.
+    // (using JAWS 17 at time of this writing).
+    // https://github.com/angular/material2/blob/master/src/cdk/a11y/live-announcer/live-announcer.ts
+
+    setTimeout(function () {
+      _this.a11yContainer.textContent = message;
+    }, 100);
+  };
+  /**
+   * Determine which animationend event is supported
+   */
+
+
+  NotyfView.prototype._getAnimationEndEventName = function () {
+    var el = document.createElement('_fake');
+    var transitions = {
+      MozTransition: 'animationend',
+      OTransition: 'oAnimationEnd',
+      WebkitTransition: 'webkitAnimationEnd',
+      transition: 'animationend'
+    };
+    var t;
+
+    for (t in transitions) {
+      if (el.style[t] !== undefined) {
+        return transitions[t];
+      }
+    } // No supported animation end event. Using "animationend" as a fallback
+
+
+    return 'animationend';
+  };
+
+  return NotyfView;
+}();
+/**
+ * Main controller class. Defines the main Notyf API.
+ */
+
+
+exports.NotyfView = NotyfView;
+
+var Notyf =
+/** @class */
+function () {
+  function Notyf(opts) {
+    var _this = this;
+
+    this.dismiss = this._removeNotification;
+    this.notifications = new NotyfArray();
+    this.view = new NotyfView();
+    var types = this.registerTypes(opts);
+    this.options = __assign(__assign({}, DEFAULT_OPTIONS), opts);
+    this.options.types = types;
+    this.notifications.onUpdate(function (elem, type) {
+      return _this.view.update(elem, type);
+    });
+    this.view.on(NotyfEvent.Dismiss, function (elem) {
+      return _this._removeNotification(elem);
+    });
+  }
+
+  Notyf.prototype.error = function (payload) {
+    var options = this.normalizeOptions('error', payload);
+    return this.open(options);
+  };
+
+  Notyf.prototype.success = function (payload) {
+    var options = this.normalizeOptions('success', payload);
+    return this.open(options);
+  };
+
+  Notyf.prototype.open = function (options) {
+    var defaultOpts = this.options.types.find(function (_a) {
+      var type = _a.type;
+      return type === options.type;
+    }) || {};
+
+    var config = __assign(__assign({}, defaultOpts), options);
+
+    this.assignProps(['ripple', 'position', 'dismissible'], config);
+    var notification = new NotyfNotification(config);
+
+    this._pushNotification(notification);
+
+    return notification;
+  };
+
+  Notyf.prototype.dismissAll = function () {
+    while (this.notifications.splice(0, 1));
+  };
+  /**
+   * Assigns properties to a config object based on two rules:
+   * 1. If the config object already sets that prop, leave it as so
+   * 2. Otherwise, use the default prop from the global options
+   *
+   * It's intended to build the final config object to open a notification. e.g. if
+   * 'dismissible' is not set, then use the value from the global config.
+   *
+   * @param props - properties to be assigned to the config object
+   * @param config - object whose properties need to be set
+   */
+
+
+  Notyf.prototype.assignProps = function (props, config) {
+    var _this = this;
+
+    props.forEach(function (prop) {
+      // intentional double equality to check for both null and undefined
+      config[prop] = config[prop] == null ? _this.options[prop] : config[prop];
+    });
+  };
+
+  Notyf.prototype._pushNotification = function (notification) {
+    var _this = this;
+
+    this.notifications.push(notification);
+    var duration = notification.options.duration !== undefined ? notification.options.duration : this.options.duration;
+
+    if (duration) {
+      setTimeout(function () {
+        return _this._removeNotification(notification);
+      }, duration);
+    }
+  };
+
+  Notyf.prototype._removeNotification = function (notification) {
+    var index = this.notifications.indexOf(notification);
+
+    if (index !== -1) {
+      this.notifications.splice(index, 1);
+    }
+  };
+
+  Notyf.prototype.normalizeOptions = function (type, payload) {
+    var options = {
+      type: type
+    };
+
+    if (typeof payload === 'string') {
+      options.message = payload;
+    } else if (typeof payload === 'object') {
+      options = __assign(__assign({}, options), payload);
+    }
+
+    return options;
+  };
+
+  Notyf.prototype.registerTypes = function (opts) {
+    var incomingTypes = (opts && opts.types || []).slice();
+    var finalDefaultTypes = DEFAULT_OPTIONS.types.map(function (defaultType) {
+      // find if there's a default type within the user input's types, if so, it means the user
+      // wants to change some of the default settings
+      var userTypeIdx = -1;
+      incomingTypes.forEach(function (t, idx) {
+        if (t.type === defaultType.type) userTypeIdx = idx;
+      });
+      var userType = userTypeIdx !== -1 ? incomingTypes.splice(userTypeIdx, 1)[0] : {};
+      return __assign(__assign({}, defaultType), userType);
+    });
+    return finalDefaultTypes.concat(incomingTypes);
+  };
+
+  return Notyf;
+}();
+
+exports.Notyf = Notyf;
+},{}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _general = require("./general");
 
 var _superagent = _interopRequireDefault(require("superagent"));
 
-var _slugify = _interopRequireDefault(require("slugify"));
-
 var _jquery = _interopRequireDefault(require("jquery"));
+
+var _notyf = require("notyf");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// scroll logic
+// Create an instance of Notyf
+var notyf = new _notyf.Notyf(); // scroll logic
+
 var mybutton = document.getElementById("to-top");
 
 window.onscroll = function () {
@@ -13758,6 +14262,13 @@ function load(params) {
   });
 }
 
+function vote(data) {
+  var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
+  return _superagent.default.post("/api/vote").send(data).end(function (err, res) {
+    cb(err, res);
+  });
+}
+
 function display(container, data) {
   var mode = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'append';
   // mode will be one of overwrite, append, prepend
@@ -13767,20 +14278,13 @@ function display(container, data) {
     alterMethod = 'append';
   } else if (mode == 'prepend') {
     alterMethod = 'prepend';
-  } // if(data.length < params.limit ){
-  //     $('.btn-showmore').fadeOut(300);
-  //     hideLoader();
-  // }else {
-  //     $('.btn-showmore').fadeIn(300);
-  //     showLoader();
-  // }
-
+  }
 
   var html = "";
   data.map(function (record) {
     var gender = 'هاوبه‌ش';
     if (record.gender == 'M' || record.gender == 'm') gender = 'كور';else if (record.gender == 'F' || record.gender == 'F') gender = 'كچ';
-    html += "\n            <a  class=\"col col-3 col-md col-sm card-container\">\n                <div class=\"card\">\n                    <h3 class=\"card-title\">".concat(record.name, " ( ").concat(gender, " ) </h3>\n                    <p class=\"card-body\">\n                        ").concat(record.desc, "\n                    \u200C</p>\n                    <div class=\"card-footer\">\n                        <div class=\"btn-group _3btn\">\n                            <button><i class=\"far fa-thumbs-down\"></i> ( ").concat(record.negative_votes, " )</button>\n                            <button><i class=\"far fa-thumbs-up\"></i>   ( ").concat(record.positive_votes, " ) </button>\n                            <button><i class=\"far fa-heart\"></i>  </button>\n                        </div>\n                    </div>\n                </div>\n            </a>\n        ");
+    html += "\n            <a  class=\"col col-3 col-md col-sm card-container\">\n                <div class=\"card\">\n                    <h3 class=\"card-title\">".concat(record.name, " ( ").concat(gender, " ) </h3>\n                    <p class=\"card-body\">\n                        ").concat(record.desc, "\n                    \u200C</p>\n                    <div class=\"card-footer\">\n                        <div class=\"btn-group _3btn\">\n                            <button class=\"down-vote\" data-id=\"").concat(record.nameId, "\"><i class=\"far fa-thumbs-down\"></i> ( ").concat(record.negative_votes, " )</button>\n                            <button class=\"up-vote\" data-id=\"").concat(record.nameId, "\"><i class=\"far fa-thumbs-up\"></i>   ( ").concat(record.positive_votes, " ) </button>\n                            <button><i class=\"far fa-heart\"></i>  </button>\n                        </div>\n                    </div>\n                </div>\n            </a>\n        ");
     return null;
   });
   (0, _jquery.default)(container)[alterMethod](html);
@@ -13793,6 +14297,26 @@ function showLoader() {
 
 function hideLoader() {
   (0, _jquery.default)('.loader').remove();
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+
+  return "";
 }
 
 module.exports = {
@@ -13859,21 +14383,224 @@ module.exports = {
         display('.names-container', data, 'append');
       });
     });
+    (0, _jquery.default)(document).delegate('.up-vote', 'click', function () {
+      var btn = this;
+      vote({
+        name_id: (0, _jquery.default)(this).data('id'),
+        uid: getCookie('uid'),
+        impact: 'positive'
+      }, function (err, res) {
+        if (err) {
+          var errors = err.response.body.errors;
+          notyf.error(errors[0].msg);
+        } else {
+          (0, _jquery.default)(btn).html("<i class=\"fas fa-check\"></i> \u0646\u06CE\u0631\u062F\u0631\u0627");
+        }
+      });
+    });
+    (0, _jquery.default)(document).delegate('.down-vote', 'click', function () {
+      var btn = this;
+      vote({
+        name_id: (0, _jquery.default)(this).data('id'),
+        uid: getCookie('uid'),
+        impact: 'negative'
+      }, function (err, res) {
+        if (err) {
+          var errors = err.response.body.errors;
+          notyf.error(errors[0].msg);
+        } else {
+          (0, _jquery.default)(btn).html("<i class=\"fas fa-check\"></i> \u0646\u06CE\u0631\u062F\u0631\u0627");
+        }
+      });
+    });
+    (0, _jquery.default)(document).delegate('.make-fav', 'click', function () {
+      var favs = localStorage.getItem('favs');
+      var id = (0, _jquery.default)(this).data('id');
+      var html = "<div class=\"col col-3 col-md col-sm card-container\">".concat((0, _jquery.default)(this).parents('.card-container').html(), "</div>");
+
+      if (favs) {
+        favs = JSON.parse(favs);
+        favs[id] = html;
+        localStorage.setItem('favs', JSON.stringify(favs));
+      } else {
+        var newFavs = {};
+        newFavs[id] = html;
+        localStorage.setItem('favs', JSON.stringify(newFavs));
+      }
+
+      (0, _jquery.default)(this).removeClass('make-fav').addClass('remove-fav').html('<i class="fas fa-heart txt-red"></i>');
+    });
+    (0, _jquery.default)(document).delegate('.remove-fav', 'click', function () {
+      var favs = localStorage.getItem('favs');
+      var id = (0, _jquery.default)(this).data('id');
+
+      if (favs) {
+        favs = JSON.parse(favs);
+        delete favs[id];
+        localStorage.setItem('favs', JSON.stringify(favs));
+      }
+
+      (0, _jquery.default)(this).removeClass('remove-fav').addClass('make-fav').html('<i class="far fa-heart"></i>');
+    });
   }
 };
-},{"./general":"general.js","superagent":"../../node_modules/superagent/lib/client.js","slugify":"../../node_modules/slugify/slugify.js","jquery":"../../node_modules/jquery/dist/jquery.js"}],"main.js":[function(require,module,exports) {
+},{"./general":"general.js","superagent":"../../node_modules/superagent/lib/client.js","jquery":"../../node_modules/jquery/dist/jquery.js","notyf":"../../node_modules/notyf/notyf.es.js"}],"favorites.js":[function(require,module,exports) {
+"use strict";
+
+var _superagent = _interopRequireDefault(require("superagent"));
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _notyf = require("notyf");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Create an instance of Notyf
+var notyf = new _notyf.Notyf();
+
+function vote(data) {
+  var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
+  return _superagent.default.post("/api/vote").send(data).end(function (err, res) {
+    cb(err, res);
+  });
+}
+
+function display(container, data) {
+  var mode = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'append';
+  // mode will be one of overwrite, append, prepend
+  var alterMethod = 'html';
+
+  if (mode === 'append') {
+    alterMethod = 'append';
+  } else if (mode == 'prepend') {
+    alterMethod = 'prepend';
+  }
+
+  var html = "";
+  data.map(function (record) {
+    var gender = 'هاوبه‌ش';
+    if (record.gender == 'M' || record.gender == 'm') gender = 'كور';else if (record.gender == 'F' || record.gender == 'F') gender = 'كچ';
+    html += "\n            <a  class=\"col col-3 col-md col-sm card-container\">\n                <div class=\"card\">\n                    <h3 class=\"card-title\">".concat(record.name, " ( ").concat(gender, " ) </h3>\n                    <p class=\"card-body\">\n                        ").concat(record.desc, "\n                    \u200C</p>\n                    <div class=\"card-footer\">\n                        <div class=\"btn-group _3btn\">\n                            <button class=\"down-vote\" data-id=\"").concat(record.nameId, "\"><i class=\"far fa-thumbs-down\"></i> ( ").concat(record.negative_votes, " )</button>\n                            <button class=\"up-vote\" data-id=\"").concat(record.nameId, "\"><i class=\"far fa-thumbs-up\"></i>   ( ").concat(record.positive_votes, " ) </button>\n                            <button><i class=\"far fa-heart\"></i>  </button>\n                        </div>\n                    </div>\n                </div>\n            </a>\n        ");
+    return null;
+  });
+  (0, _jquery.default)(container)[alterMethod](html);
+  return html;
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+
+  return "";
+}
+
+module.exports = {
+  init: function init() {
+    var favs = localStorage.getItem('favs');
+
+    try {
+      favs = JSON.parse(favs);
+
+      for (var key in favs) {
+        if (favs.hasOwnProperty(key)) {
+          var val = favs[key];
+          (0, _jquery.default)('.names-container').append(val);
+        }
+      }
+    } catch (e) {
+      console.log(e);
+    }
+
+    (0, _jquery.default)(document).delegate('.up-vote', 'click', function () {
+      var btn = this;
+      vote({
+        name_id: (0, _jquery.default)(this).data('id'),
+        uid: getCookie('uid'),
+        impact: 'positive'
+      }, function (err, res) {
+        if (err) {
+          var errors = err.response.body.errors;
+          notyf.error(errors[0].msg);
+        } else {
+          (0, _jquery.default)(btn).html("<i class=\"fas fa-check\"></i> \u0646\u06CE\u0631\u062F\u0631\u0627");
+        }
+      });
+    });
+    (0, _jquery.default)(document).delegate('.down-vote', 'click', function () {
+      var btn = this;
+      vote({
+        name_id: (0, _jquery.default)(this).data('id'),
+        uid: getCookie('uid'),
+        impact: 'negative'
+      }, function (err, res) {
+        if (err) {
+          var errors = err.response.body.errors;
+          notyf.error(errors[0].msg);
+        } else {
+          (0, _jquery.default)(btn).html("<i class=\"fas fa-check\"></i> \u0646\u06CE\u0631\u062F\u0631\u0627");
+        }
+      });
+    });
+    (0, _jquery.default)(document).delegate('.make-fav', 'click', function () {
+      var favs = localStorage.getItem('favs');
+      var id = (0, _jquery.default)(this).data('id');
+      var html = "<div class=\"col col-3 col-md col-sm card-container\">".concat((0, _jquery.default)(this).parents('.card-container').html(), "</div>");
+
+      if (favs) {
+        favs = JSON.parse(favs);
+        favs[id] = html;
+        localStorage.setItem('favs', JSON.stringify(favs));
+      } else {
+        var newFavs = {};
+        newFavs[id] = html;
+        localStorage.setItem('favs', JSON.stringify(newFavs));
+      }
+
+      (0, _jquery.default)(this).removeClass('make-fav').addClass('remove-fav').html('<i class="fas fa-heart txt-red"></i>');
+    });
+    (0, _jquery.default)(document).delegate('.remove-fav', 'click', function () {
+      var favs = localStorage.getItem('favs');
+      var id = (0, _jquery.default)(this).data('id');
+
+      if (favs) {
+        favs = JSON.parse(favs);
+        delete favs[id];
+        localStorage.setItem('favs', JSON.stringify(favs));
+      }
+
+      (0, _jquery.default)(this).removeClass('remove-fav').addClass('make-fav').html('<i class="far fa-heart"></i>');
+    });
+  }
+};
+},{"superagent":"../../node_modules/superagent/lib/client.js","jquery":"../../node_modules/jquery/dist/jquery.js","notyf":"../../node_modules/notyf/notyf.es.js"}],"main.js":[function(require,module,exports) {
 "use strict";
 
 var index = _interopRequireWildcard(require("./index"));
+
+var favorites = _interopRequireWildcard(require("./favorites"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 window.nawikurdi = {
-  index: index
+  index: index,
+  favorites: favorites
 };
-},{"./index":"index.js"}],"../../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./index":"index.js","./favorites":"favorites.js"}],"../../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -13901,7 +14628,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50474" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59795" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
