@@ -3,7 +3,7 @@ const slugify = require('slugify');
 const router = express.Router();
 const render = require('./../helpers/customRender')
 
-const {getBaseNames} = require('./../queries');
+const {getBaseNames, getBaseRecordCount} = require('./../queries');
 
 async function loadMetaContent(id) {
     const fileName = id;
@@ -13,11 +13,13 @@ async function loadMetaContent(id) {
 function loadIndexData (req){
   return Promise.all([
     getBaseNames(req.query.limit, req.query.offset, req),
+    getBaseRecordCount()
   ])
   .then((values)=>{
-    const [names] = values;
+    const [names, [records]] = values;
     return {
       names: names || [],
+      records: records.recordCount || 0,
     };
   })
 }

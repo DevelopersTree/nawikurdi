@@ -36,7 +36,7 @@ body{
 }
   
 /* Add a background color on hover */
-.btn-group button:hover {
+.btn-group button:hover, .btn-group button.active {
     background-color: #011627;
     color: #f8f8f8;
 }
@@ -56,6 +56,9 @@ body{
 .btn-group button:last-child{
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
+}
+.txt-center{
+    text-align: center;
 }
 
 /* main container */
@@ -99,7 +102,7 @@ nav .nav-item:last-of-type{
     text-align: center;
     margin-bottom: 15px;
 }
-.filters-container, .social-container{
+.filters-container, .social-container, .detail-container{
     border: 1px solid #f3f3f3;
     /* height: 100%; */
     margin-top: 25px;
@@ -107,11 +110,29 @@ nav .nav-item:last-of-type{
     border-radius: 4px;
     text-align: right;
 }
-.filters-container h3, .social-container h3{
-    background: #f8f8f8;
+.filters-container h3{
+    background: #2EC4B6;
+    color:white;
     margin-top: 0;
     padding: 15px;
     text-align: center;
+}
+.social-container h3{
+    background: #F35E29;
+    color:white;
+    margin-top: 0;
+    padding: 15px;
+    text-align: center;
+}
+.detail-container h3{
+    background: #E71D36;
+    color:white;
+    margin-top: 0;
+    padding: 15px;
+    text-align: center;
+}
+.detail-container ul {
+    direction: rtl;
 }
 .gender-filter-container, .popularity-filter-container, .input-filter-container{
     padding: 15px;
@@ -123,6 +144,7 @@ nav .nav-item:last-of-type{
     text-align: right;
     border: 1px solid #f3f3f3;
     border-radius: 4px;
+    direction: rtl;
 }
 .names-container{
     /* direction: rtl; */

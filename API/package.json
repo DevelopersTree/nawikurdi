@@ -27,7 +27,8 @@
     "mysql": "2.17.1",
     "mysql2": "1.6.5",
     "serve-favicon": "^2.5.0",
-    "slugify": "^1.4.0"
+    "slugify": "^1.4.0",
+    "superagent": "^5.2.2"
   },
   "devDependencies": {
     "eslint": "6.2.2",

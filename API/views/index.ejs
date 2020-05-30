@@ -1,8 +1,7 @@
-<section class="grid grid-between names-container">
+<section class="grid grid-between ">
     <div class="col col-5 col-md col-sm filters-grid">
         <div class="social-container">
             <h3>ناوی كوردی بڵاوبكه‌ره‌وه‌</h3>
-            
             <div class="addthis_inline_share_toolbox_sl27"></div>
         </div>
         <div class="filters-container">
@@ -10,35 +9,56 @@
             <div class="gender-filter-container">
                 <span>ره‌گه‌ز</span>
                 <div class="btn-group _4btn">
-                    <button>هه‌مووی <i class="fas fa-user-friends"></i></button>
-                    <button>هاوبه‌ش <i class="fas fa-neuter"></i></button>
-                    <button>كچ <i class="fas fa-female"></i></button>
-                    <button>كور <i class="fas fa-male"></i></button>
+                    <button class="gender-filter active" data-value="-1">هه‌مووی <i class="fas fa-user-friends"></i></button>
+                    <button class="gender-filter" data-value="O">هاوبه‌ش <i class="fas fa-neuter"></i></button>
+                    <button class="gender-filter" data-value="F"> كچ <i class="fas fa-female"></i></button>
+                    <button class="gender-filter" data-value="M">كور <i class="fas fa-male"></i></button>
                 </div>
             </div>
             <div class="popularity-filter-container">
                 <span>به‌پێی ده‌نگ</span>
                 <div class="btn-group _3btn">
-                    <button>هه‌مووی <i class="fas fa-user-friends"></i></button>
-                    <button>كه‌مترین ده‌نگ <i class="fas fa-tint"></i></button>
-                    <button>به‌ناوبانگترین <i class="fas fa-fire"></i></button>
+                    <button class="popularity-filter active" data-value="-1">هه‌مووی <i class="fas fa-user-friends"></i></button>
+                    <button class="popularity-filter" data-value="negative">كه‌مترین ده‌نگ <i class="fas fa-tint"></i></button>
+                    <button class="popularity-filter" data-value="positive">به‌ناوبانگترین <i class="fas fa-fire"></i></button>
                 </div>
             </div>
             <div class="input-filter-container">
-                <span>ده‌سته‌واژه‌یه‌ك بنوسه‌</span>
+                <span>ده‌سته‌واژه‌یه‌ك بنوسه‌ بۆ گه‌ران</span>
                 <input type="text" class="input-filter" placeholder="سه‌ره‌تای ئه‌و ناوه‌ یان ده‌سته‌واژه‌یه‌ بنوسه‌ كه‌ له‌ خه‌یاڵته‌ وه‌ك ئار"/>
             </div>
         </div>
-        
-        
+
+        <div class="detail-container">
+            <h3>ورده‌كاری زیاتر‌</h3>
+            <ul>
+                <li>
+                    زیاتر له‌ 
+                    <%= records %>
+                    ناو هه‌یه‌ له‌ بنكه‌دراوه‌
+                </li>
+                <li>له‌ رێگه‌ی 
+                    <a alt="دره‌ختی گه‌شه‌پێده‌ران" href="http://m.me/nawykurdi">
+                        فه‌یسبووكه‌وه‌ مانای ناوه‌كان به‌ده‌س بێنه‌
+                    </a>
+                </li>
+                <li>له‌ لایه‌ن 
+                    <a alt="دره‌ختی گه‌شه‌پێده‌ران" href="https://devstree.io">
+                        دره‌ختی گه‌شه‌پێده‌ران
+                    </a>
+                    دروست كراوه‌
+                </li>
+                <li>ناوی كوردی سه‌رچاوه‌ كراوه‌یه‌</li>
+            </ul>
+        </div>
     </div>
-    <div class="col col-7 col-md col-sm grid-around ">
+    <div class="col col-7 col-md col-sm grid-around names-container">
         <% names.forEach((record)=>{ %>
             <% let gender = 'هاوبه‌ش'; 
                 if(record.gender == 'M' || record.gender == 'm') gender ='كور';
                 else if(record.gender == 'F' || record.gender == 'F') gender ='كچ';
             %>
-            <a href="#" class="col col-3 col-md col-sm card-container">
+            <a  class="col col-3 col-md col-sm card-container">
                 <div class="card">
                     <h3 class="card-title"><%= record.name %> ( <%= gender %> ) </h3>
                     <p class="card-body">
@@ -52,9 +72,15 @@
                         </div>
                     </div>
                 </div>
-                
             </a>
-        <% }) %>
-    </div>    
+        <% }) %>  
+    </div> 
+     
 </section>
 <button onclick="topFunction()" id="to-top" title="Go to top"><i class="fas fa-chevron-up"></i></button>
+<!-- Custom Script To Enable JS Functionality -->
+<script>
+    window.onload = function(){
+        window.nawikurdi.index.init();
+    }
+</script>
