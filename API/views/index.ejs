@@ -1,10 +1,39 @@
+<div class="grid grid-between ">
+    <div class="filters-container">
+        <h3> گه‌ران و پاڵاوتن</h3>
+        <div class="grid">
+            <div class="col col-md col-sm gender-filter-container">
+                <span>ره‌گه‌ز</span>
+                <div class="btn-group _4btn">
+                    <button class="gender-filter active" data-value="-1">هه‌مووی <i class="fas fa-user-friends"></i></button>
+                    <button class="gender-filter" data-value="O">هاوبه‌ش <i class="fas fa-neuter"></i></button>
+                    <button class="gender-filter" data-value="F"> كچ <i class="fas fa-female"></i></button>
+                    <button class="gender-filter" data-value="M">كور <i class="fas fa-male"></i></button>
+                </div>
+            </div>
+            <div class="col col-md col-sm popularity-filter-container">
+                <span>به‌پێی ده‌نگ</span>
+                <div class="btn-group _3btn">
+                    <button class="popularity-filter active" data-value="-1">هه‌مووی <i class="fas fa-user-friends"></i></button>
+                    <button class="popularity-filter" data-value="negative">كه‌مترین ده‌نگ <i class="fas fa-tint"></i></button>
+                    <button class="popularity-filter" data-value="positive">به‌ناوبانگترین <i class="fas fa-fire"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="input-filter-container">
+            <span>ده‌سته‌واژه‌یه‌ك بنوسه‌ بۆ گه‌ران</span>
+            <input type="text" class="input-filter" placeholder="سه‌ره‌تای ئه‌و ناوه‌ یان ده‌سته‌واژه‌یه‌ بنوسه‌ كه‌ له‌ خه‌یاڵته‌ وه‌ك ئار..."/>
+        </div>
+    </div>
+</div>
 <section class="grid grid-between ">
     <div class="col col-5 col-md col-sm filters-grid">
         <div class="social-container">
             <h3>ناوی كوردی بڵاوبكه‌ره‌وه‌</h3>
             <div class="addthis_inline_share_toolbox_sl27"></div>
         </div>
-        <div class="filters-container">
+        <!-- <div class="filters-container">
             <h3> گه‌ران و پاڵاوتن</h3>
             <div class="gender-filter-container">
                 <span>ره‌گه‌ز</span>
@@ -27,8 +56,7 @@
                 <span>ده‌سته‌واژه‌یه‌ك بنوسه‌ بۆ گه‌ران</span>
                 <input type="text" class="input-filter" placeholder="سه‌ره‌تای ئه‌و ناوه‌ یان ده‌سته‌واژه‌یه‌ بنوسه‌ كه‌ له‌ خه‌یاڵته‌ وه‌ك ئار..."/>
             </div>
-        </div>
-
+        </div> -->
         <div class="detail-container">
             <h3>ورده‌كاری زیاتر‌</h3>
             <ul>
@@ -53,6 +81,10 @@
         </div>
     </div>
     <div class="col col-7 col-md col-sm grid-around names-container">
+        <div class="col col-md col-sm  notfound-container">
+           <img src="/images/child.webp"/>
+           <p>ببوره‌ هیچ ناوێك نه‌دۆزرایه‌وه‌ ده‌سته‌واژه‌یه‌كی جیاواز به‌كاربهێنه‌</p>
+        </div>
         <% names.forEach((record)=>{ %>
             <% let gender = 'هاوبه‌ش'; 
                 if(record.gender == 'M' || record.gender == 'm') gender ='كور';
@@ -66,8 +98,8 @@
                     ‌</p>
                     <div class="card-footer">
                         <div class="btn-group _3btn">
-                            <button class="down-vote" data-id="<%= record.nameId %>"><i class="far fa-thumbs-down"></i> ( <%= record.negative_votes %> )</button>
-                            <button class="up-vote" data-id="<%= record.nameId %>"><i class="far fa-thumbs-up "></i>   ( <%= record.positive_votes %> ) </button>
+                            <button class="down-vote" data-id="<%= record.nameId %>"><i class="fas fa-arrow-down"></i> ( <%= record.negative_votes %> )</button>
+                            <button class="up-vote" data-id="<%= record.nameId %>"><i class="fas fa-arrow-up "></i>   ( <%= record.positive_votes %> ) </button>
                             <button class="make-fav" data-id="<%= record.nameId %>"><i class="far fa-heart"></i>  </button>
                         </div>
                     </div>

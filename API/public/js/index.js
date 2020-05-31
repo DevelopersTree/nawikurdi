@@ -69,9 +69,9 @@ function display(container, data, mode = 'append'){
                     ‌</p>
                     <div class="card-footer">
                         <div class="btn-group _3btn">
-                            <button class="down-vote" data-id="${record.nameId}"><i class="far fa-thumbs-down"></i> ( ${record.negative_votes} )</button>
-                            <button class="up-vote" data-id="${record.nameId}"><i class="far fa-thumbs-up"></i>   ( ${record.positive_votes} ) </button>
-                            <button><i class="far fa-heart"></i>  </button>
+                            <button class="down-vote" data-id="${record.nameId}"><i class="fas fa-arrow-down"></i> ( ${record.negative_votes} )</button>
+                            <button class="up-vote" data-id="${record.nameId}"><i class="fas fa-arrow-up"></i>   ( ${record.positive_votes} ) </button>
+                            <button class="make-fav" data-id="${record.nameId}" ><i class="far fa-heart"></i>  </button>
                         </div>
                     </div>
                 </div>
@@ -107,10 +107,19 @@ function getCookie(cname) {
     }
     return "";
 }
+function makeHeartsRed(){
+    let fav_ids = localStorage.getItem('fav_ids');
+    if(fav_ids) {
+        fav_ids = fav_ids.split(',');
+        fav_ids.forEach(function(id){
+            $(`.make-fav[data-id=${id}]`).removeClass('make-fav').addClass('remove-fav').html('<i class="fas fa-heart txt-red"></i>');
+        });
+    }
+}
 module.exports = {
     init: function() {
         window.topFunction = topFunction;
-
+        makeHeartsRed();
         $(window).scroll(function(){
             const triggerMargin = 100;
             if ($(window).scrollTop() >= $(document).height()-$(window).height() - triggerMargin ){
@@ -122,6 +131,7 @@ module.exports = {
                 load(params).then((data)=>{
                     hideLoader();
                     display('.names-container', data, 'append');
+                    makeHeartsRed();
                 });
             }
         });
@@ -135,6 +145,7 @@ module.exports = {
             load(params).then((data)=>{
                 hideLoader();
                 display('.names-container', data, 'overwrite');
+                makeHeartsRed()
             });
             
         }, 300));
@@ -150,6 +161,7 @@ module.exports = {
             load(params).then((data)=>{
                 hideLoader();
                 display('.names-container', data, 'overwrite');
+                makeHeartsRed()
             });
             
         });
@@ -165,18 +177,9 @@ module.exports = {
             load(params).then((data)=>{
                 hideLoader();
                 display('.names-container', data, 'overwrite');
+                makeHeartsRed()
             });
             
-        });
-        $('.btn-showmore').click(function(){
-            let page = $(this).data('page') || 1;
-            const calculatedOffset = params.limit*page;
-            params.offset = calculatedOffset;
-            $(this).data('page', ++page);
-            load(params).then((data)=>{
-                
-                display('.names-container', data, 'append');
-            });
         });
 
         $(document).delegate('.up-vote', 'click', function(){
@@ -216,6 +219,16 @@ module.exports = {
             const id = $(this).data('id');
             $(this).removeClass('make-fav').addClass('remove-fav').html('<i class="fas fa-heart txt-red"></i>');
             const html  = `<a class="col col-3 col-md col-sm card-container">${$(this).parents('.card-container').html()}</a>` ;
+            let fav_ids = localStorage.getItem('fav_ids');
+            if(fav_ids) {
+                fav_ids = fav_ids.split(',');
+                if(fav_ids.indexOf(id)<= -1 ){
+                    fav_ids.push(id);
+                    localStorage.setItem('fav_ids', fav_ids.join(','))
+                }
+            } else {
+                localStorage.setItem('fav_ids', [id].join(','))
+            }
             if(favs){
                 favs = JSON.parse(favs);
                 favs[id] = html;
@@ -229,11 +242,21 @@ module.exports = {
         });
         $(document).delegate('.remove-fav', 'click', function(){
             let favs = localStorage.getItem('favs');
+            let fav_ids = localStorage.getItem('fav_ids');
             const id = $(this).data('id');
             if(favs){
                 favs = JSON.parse(favs);
                 delete favs[id];
                 localStorage.setItem('favs', JSON.stringify(favs))
+            }
+            if(fav_ids){
+                fav_ids = fav_ids.split(',');
+                const index = fav_ids.indexOf(id+"");
+                console.log(fav_ids)
+                if (index > -1) {
+                    fav_ids.splice(index, 1);
+                }
+                localStorage.setItem('fav_ids', fav_ids.join(','))
             }
             $(this).removeClass('remove-fav').addClass('make-fav').html('<i class="far fa-heart"></i>');
         });

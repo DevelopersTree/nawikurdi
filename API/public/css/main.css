@@ -52,6 +52,11 @@ body{
 ._2btn button {
     width: 50%;
 }
+@media only screen and (max-width: 973px) {
+    .btn-group button.gender-filter,.btn-group button.popularity-filter{
+        width: 100% !important;
+    }
+}
 .btn-group button:first-child{
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
@@ -97,6 +102,14 @@ nav .nav-item:last-of-type{
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
 }
+/* not found container */
+.notfound-container{
+    text-align: center;
+}
+.notfound-container img{
+    width: 120px;
+    margin: 0 auto;
+}
 /* names and filters container */
 .filters-grid{
     padding: 0;
@@ -105,7 +118,7 @@ nav .nav-item:last-of-type{
     text-align: center;
     margin-bottom: 15px;
 }
-.filters-container, .social-container, .detail-container{
+.social-container, .detail-container{
     border: 1px solid #f3f3f3;
     /* height: 100%; */
     margin-top: 25px;
@@ -113,11 +126,20 @@ nav .nav-item:last-of-type{
     border-radius: 4px;
     text-align: right;
 }
+.filters-container{
+    border: 1px solid #f3f3f3;
+    /* height: 100%; */
+    /* margin-top: 25px; */
+    width: 100%;
+    border-radius: 4px;
+    text-align: right;
+}
 .filters-container h3{
-    background: #2EC4B6;
+    /* background: #2EC4B6; */
+    background: #011627;
     color:white;
     margin-top: 0;
-    padding: 15px;
+    padding: 5px;
     text-align: center;
 }
 .social-container h3{
@@ -137,8 +159,14 @@ nav .nav-item:last-of-type{
 .detail-container ul {
     direction: rtl;
 }
-.gender-filter-container, .popularity-filter-container, .input-filter-container{
+.input-filter-container{
     padding: 15px;
+}
+.gender-filter-container, .popularity-filter-container{
+    /* padding: 15px; */
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 5px;;
 }
 .input-filter{
     width: 100%;

@@ -14284,7 +14284,7 @@ function display(container, data) {
   data.map(function (record) {
     var gender = 'هاوبه‌ش';
     if (record.gender == 'M' || record.gender == 'm') gender = 'كور';else if (record.gender == 'F' || record.gender == 'F') gender = 'كچ';
-    html += "\n            <a  class=\"col col-3 col-md col-sm card-container\">\n                <div class=\"card\">\n                    <h3 class=\"card-title\">".concat(record.name, " ( ").concat(gender, " ) </h3>\n                    <p class=\"card-body\">\n                        ").concat(record.desc, "\n                    \u200C</p>\n                    <div class=\"card-footer\">\n                        <div class=\"btn-group _3btn\">\n                            <button class=\"down-vote\" data-id=\"").concat(record.nameId, "\"><i class=\"far fa-thumbs-down\"></i> ( ").concat(record.negative_votes, " )</button>\n                            <button class=\"up-vote\" data-id=\"").concat(record.nameId, "\"><i class=\"far fa-thumbs-up\"></i>   ( ").concat(record.positive_votes, " ) </button>\n                            <button><i class=\"far fa-heart\"></i>  </button>\n                        </div>\n                    </div>\n                </div>\n            </a>\n        ");
+    html += "\n            <a  class=\"col col-3 col-md col-sm card-container\">\n                <div class=\"card\">\n                    <h3 class=\"card-title\">".concat(record.name, " ( ").concat(gender, " ) </h3>\n                    <p class=\"card-body\">\n                        ").concat(record.desc, "\n                    \u200C</p>\n                    <div class=\"card-footer\">\n                        <div class=\"btn-group _3btn\">\n                            <button class=\"down-vote\" data-id=\"").concat(record.nameId, "\"><i class=\"fas fa-arrow-down\"></i> ( ").concat(record.negative_votes, " )</button>\n                            <button class=\"up-vote\" data-id=\"").concat(record.nameId, "\"><i class=\"fas fa-arrow-up\"></i>   ( ").concat(record.positive_votes, " ) </button>\n                            <button class=\"make-fav\" data-id=\"").concat(record.nameId, "\" ><i class=\"far fa-heart\"></i>  </button>\n                        </div>\n                    </div>\n                </div>\n            </a>\n        ");
     return null;
   });
   (0, _jquery.default)(container)[alterMethod](html);
@@ -14319,9 +14319,21 @@ function getCookie(cname) {
   return "";
 }
 
+function makeHeartsRed() {
+  var fav_ids = localStorage.getItem('fav_ids');
+
+  if (fav_ids) {
+    fav_ids = fav_ids.split(',');
+    fav_ids.forEach(function (id) {
+      (0, _jquery.default)(".make-fav[data-id=".concat(id, "]")).removeClass('make-fav').addClass('remove-fav').html('<i class="fas fa-heart txt-red"></i>');
+    });
+  }
+}
+
 module.exports = {
   init: function init() {
     window.topFunction = topFunction;
+    makeHeartsRed();
     (0, _jquery.default)(window).scroll(function () {
       var triggerMargin = 100;
 
@@ -14334,6 +14346,7 @@ module.exports = {
         load(params).then(function (data) {
           hideLoader();
           display('.names-container', data, 'append');
+          makeHeartsRed();
         });
       }
     });
@@ -14346,6 +14359,7 @@ module.exports = {
       load(params).then(function (data) {
         hideLoader();
         display('.names-container', data, 'overwrite');
+        makeHeartsRed();
       });
     }, 300));
     (0, _jquery.default)('.gender-filter').click(function () {
@@ -14359,6 +14373,7 @@ module.exports = {
       load(params).then(function (data) {
         hideLoader();
         display('.names-container', data, 'overwrite');
+        makeHeartsRed();
       });
     });
     (0, _jquery.default)('.popularity-filter').click(function () {
@@ -14372,15 +14387,7 @@ module.exports = {
       load(params).then(function (data) {
         hideLoader();
         display('.names-container', data, 'overwrite');
-      });
-    });
-    (0, _jquery.default)('.btn-showmore').click(function () {
-      var page = (0, _jquery.default)(this).data('page') || 1;
-      var calculatedOffset = params.limit * page;
-      params.offset = calculatedOffset;
-      (0, _jquery.default)(this).data('page', ++page);
-      load(params).then(function (data) {
-        display('.names-container', data, 'append');
+        makeHeartsRed();
       });
     });
     (0, _jquery.default)(document).delegate('.up-vote', 'click', function () {
@@ -14418,6 +14425,18 @@ module.exports = {
       var id = (0, _jquery.default)(this).data('id');
       (0, _jquery.default)(this).removeClass('make-fav').addClass('remove-fav').html('<i class="fas fa-heart txt-red"></i>');
       var html = "<a class=\"col col-3 col-md col-sm card-container\">".concat((0, _jquery.default)(this).parents('.card-container').html(), "</a>");
+      var fav_ids = localStorage.getItem('fav_ids');
+
+      if (fav_ids) {
+        fav_ids = fav_ids.split(',');
+
+        if (fav_ids.indexOf(id) <= -1) {
+          fav_ids.push(id);
+          localStorage.setItem('fav_ids', fav_ids.join(','));
+        }
+      } else {
+        localStorage.setItem('fav_ids', [id].join(','));
+      }
 
       if (favs) {
         favs = JSON.parse(favs);
@@ -14431,12 +14450,25 @@ module.exports = {
     });
     (0, _jquery.default)(document).delegate('.remove-fav', 'click', function () {
       var favs = localStorage.getItem('favs');
+      var fav_ids = localStorage.getItem('fav_ids');
       var id = (0, _jquery.default)(this).data('id');
 
       if (favs) {
         favs = JSON.parse(favs);
         delete favs[id];
         localStorage.setItem('favs', JSON.stringify(favs));
+      }
+
+      if (fav_ids) {
+        fav_ids = fav_ids.split(',');
+        var index = fav_ids.indexOf(id + "");
+        console.log(fav_ids);
+
+        if (index > -1) {
+          fav_ids.splice(index, 1);
+        }
+
+        localStorage.setItem('fav_ids', fav_ids.join(','));
       }
 
       (0, _jquery.default)(this).removeClass('remove-fav').addClass('make-fav').html('<i class="far fa-heart"></i>');
@@ -14455,7 +14487,27 @@ var _notyf = require("notyf");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Create an instance of Notyf
-var notyf = new _notyf.Notyf();
+var notyf = new _notyf.Notyf(); // scroll logic
+
+var mybutton = document.getElementById("to-top");
+
+window.onscroll = function () {
+  scrollFunction();
+};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
 
 function vote(data) {
   var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
@@ -14486,6 +14538,7 @@ function getCookie(cname) {
 
 module.exports = {
   init: function init() {
+    window.topFunction = topFunction;
     var favs = localStorage.getItem('favs');
 
     try {
@@ -14530,32 +14583,32 @@ module.exports = {
           (0, _jquery.default)(btn).html("<i class=\"fas fa-check\"></i> \u0646\u06CE\u0631\u062F\u0631\u0627");
         }
       });
-    }); // $(document).delegate('.make-fav', 'click', function(){
-    //     let favs = localStorage.getItem('favs');
-    //     const id = $(this).data('id');
-    //     const html  = `<a class="col col-3 col-md col-sm card-container">${$(this).parents('.card-container').html()}</a>` ;
-    //     console.log(html)
-    //     if(favs){
-    //         favs = JSON.parse(favs);
-    //         favs[id] = html;
-    //         localStorage.setItem('favs', JSON.stringify(favs))
-    //     } else {
-    //         const newFavs = {};
-    //         newFavs[id] = html;
-    //         localStorage.setItem('favs', JSON.stringify(newFavs))
-    //     }
-    //     $(this).removeClass('make-fav').addClass('remove-fav').html('<i class="fas fa-heart txt-red"></i>');
-    // });
-    // $(document).delegate('.remove-fav', 'click', function(){
-    //     let favs = localStorage.getItem('favs');
-    //     const id = $(this).data('id');
-    //     if(favs){
-    //         favs = JSON.parse(favs);
-    //         delete favs[id];
-    //         localStorage.setItem('favs', JSON.stringify(favs))
-    //     }
-    //     $(this).removeClass('remove-fav').addClass('make-fav').html('<i class="far fa-heart"></i>');
-    // });
+    });
+    (0, _jquery.default)(document).delegate('.remove-fav', 'click', function () {
+      var favs = localStorage.getItem('favs');
+      var fav_ids = localStorage.getItem('fav_ids');
+      var id = (0, _jquery.default)(this).data('id');
+
+      if (favs) {
+        favs = JSON.parse(favs);
+        delete favs[id];
+        localStorage.setItem('favs', JSON.stringify(favs));
+      }
+
+      if (fav_ids) {
+        fav_ids = fav_ids.split(',');
+        var index = fav_ids.indexOf(id + "");
+        console.log(fav_ids);
+
+        if (index > -1) {
+          fav_ids.splice(index, 1);
+        }
+
+        localStorage.setItem('fav_ids', fav_ids.join(','));
+      }
+
+      (0, _jquery.default)(this).parents('.card-container').remove();
+    });
   }
 };
 },{"superagent":"../../node_modules/superagent/lib/client.js","jquery":"../../node_modules/jquery/dist/jquery.js","notyf":"../../node_modules/notyf/notyf.es.js"}],"main.js":[function(require,module,exports) {
@@ -14601,7 +14654,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42171" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49381" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

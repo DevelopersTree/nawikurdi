@@ -4,6 +4,20 @@ import { Notyf } from 'notyf';
 // Create an instance of Notyf
 const notyf = new Notyf();
 
+// scroll logic
+let mybutton = document.getElementById("to-top");
+window.onscroll = function() {scrollFunction()};
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
 
 function vote(data, cb = ()=>{}){
     return superagent
@@ -33,6 +47,8 @@ function getCookie(cname) {
 
 module.exports = {
     init: function() {
+        window.topFunction = topFunction;
+        
         let favs = localStorage.getItem('favs');
         try{
             favs = JSON.parse(favs);
@@ -77,33 +93,27 @@ module.exports = {
                 }
             })
         });
-        // $(document).delegate('.make-fav', 'click', function(){
-        //     let favs = localStorage.getItem('favs');
-        //     const id = $(this).data('id');
-        //     const html  = `<a class="col col-3 col-md col-sm card-container">${$(this).parents('.card-container').html()}</a>` ;
-        //     console.log(html)
-        //     if(favs){
-        //         favs = JSON.parse(favs);
-        //         favs[id] = html;
-        //         localStorage.setItem('favs', JSON.stringify(favs))
-        //     } else {
-        //         const newFavs = {};
-        //         newFavs[id] = html;
-        //         localStorage.setItem('favs', JSON.stringify(newFavs))
-        //     }
-        //     $(this).removeClass('make-fav').addClass('remove-fav').html('<i class="fas fa-heart txt-red"></i>');
+        $(document).delegate('.remove-fav', 'click', function(){
+            let favs = localStorage.getItem('favs');
+            let fav_ids = localStorage.getItem('fav_ids');
 
-        // });
-        // $(document).delegate('.remove-fav', 'click', function(){
-        //     let favs = localStorage.getItem('favs');
-        //     const id = $(this).data('id');
-        //     if(favs){
-        //         favs = JSON.parse(favs);
-        //         delete favs[id];
-        //         localStorage.setItem('favs', JSON.stringify(favs))
-        //     }
-        //     $(this).removeClass('remove-fav').addClass('make-fav').html('<i class="far fa-heart"></i>');
-        // });
+            const id = $(this).data('id');
+            if(favs){
+                favs = JSON.parse(favs);
+                delete favs[id];
+                localStorage.setItem('favs', JSON.stringify(favs))
+            }
+            if(fav_ids){
+                fav_ids = fav_ids.split(',');
+                const index = fav_ids.indexOf(id+"");
+                console.log(fav_ids)
+                if (index > -1) {
+                    fav_ids.splice(index, 1);
+                }
+                localStorage.setItem('fav_ids', fav_ids.join(','))
+            }
+            $(this).parents('.card-container').remove()
+        });
         
     },
 }
