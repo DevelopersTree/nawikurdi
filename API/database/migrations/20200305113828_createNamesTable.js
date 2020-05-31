@@ -9,7 +9,8 @@ exports.up = (knex) => knex.schema.createTable('names', (table) => {
   table.boolean('activated').notNullable().defaultTo(0);
   table.integer('positive_votes').notNullable().defaultTo(0);    
   table.integer('negative_votes').notNullable().defaultTo(0);    
-  table.datetime('created_at', { precision: 6 }).defaultTo(knex.fn.now());
+  table.datetime('created_at', { precision: 6 })
+  // .defaultTo(knex.fn.now());
   table.charset('utf8');
   table.collate('utf8_general_ci');
 });

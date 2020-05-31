@@ -214,7 +214,8 @@ module.exports = {
         $(document).delegate('.make-fav', 'click', function(){
             let favs = localStorage.getItem('favs');
             const id = $(this).data('id');
-            const html  = `<div class="col col-3 col-md col-sm card-container">${$(this).parents('.card-container').html()}</div>` ;
+            $(this).removeClass('make-fav').addClass('remove-fav').html('<i class="fas fa-heart txt-red"></i>');
+            const html  = `<a class="col col-3 col-md col-sm card-container">${$(this).parents('.card-container').html()}</a>` ;
             if(favs){
                 favs = JSON.parse(favs);
                 favs[id] = html;
@@ -224,7 +225,6 @@ module.exports = {
                 newFavs[id] = html;
                 localStorage.setItem('favs', JSON.stringify(newFavs))
             }
-            $(this).removeClass('make-fav').addClass('remove-fav').html('<i class="fas fa-heart txt-red"></i>');
 
         });
         $(document).delegate('.remove-fav', 'click', function(){

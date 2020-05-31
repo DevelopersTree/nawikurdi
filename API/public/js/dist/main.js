@@ -14416,7 +14416,8 @@ module.exports = {
     (0, _jquery.default)(document).delegate('.make-fav', 'click', function () {
       var favs = localStorage.getItem('favs');
       var id = (0, _jquery.default)(this).data('id');
-      var html = "<div class=\"col col-3 col-md col-sm card-container\">".concat((0, _jquery.default)(this).parents('.card-container').html(), "</div>");
+      (0, _jquery.default)(this).removeClass('make-fav').addClass('remove-fav').html('<i class="fas fa-heart txt-red"></i>');
+      var html = "<a class=\"col col-3 col-md col-sm card-container\">".concat((0, _jquery.default)(this).parents('.card-container').html(), "</a>");
 
       if (favs) {
         favs = JSON.parse(favs);
@@ -14427,8 +14428,6 @@ module.exports = {
         newFavs[id] = html;
         localStorage.setItem('favs', JSON.stringify(newFavs));
       }
-
-      (0, _jquery.default)(this).removeClass('make-fav').addClass('remove-fav').html('<i class="fas fa-heart txt-red"></i>');
     });
     (0, _jquery.default)(document).delegate('.remove-fav', 'click', function () {
       var favs = localStorage.getItem('favs');
@@ -14463,28 +14462,6 @@ function vote(data) {
   return _superagent.default.post("/api/vote").send(data).end(function (err, res) {
     cb(err, res);
   });
-}
-
-function display(container, data) {
-  var mode = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'append';
-  // mode will be one of overwrite, append, prepend
-  var alterMethod = 'html';
-
-  if (mode === 'append') {
-    alterMethod = 'append';
-  } else if (mode == 'prepend') {
-    alterMethod = 'prepend';
-  }
-
-  var html = "";
-  data.map(function (record) {
-    var gender = 'هاوبه‌ش';
-    if (record.gender == 'M' || record.gender == 'm') gender = 'كور';else if (record.gender == 'F' || record.gender == 'F') gender = 'كچ';
-    html += "\n            <a  class=\"col col-3 col-md col-sm card-container\">\n                <div class=\"card\">\n                    <h3 class=\"card-title\">".concat(record.name, " ( ").concat(gender, " ) </h3>\n                    <p class=\"card-body\">\n                        ").concat(record.desc, "\n                    \u200C</p>\n                    <div class=\"card-footer\">\n                        <div class=\"btn-group _3btn\">\n                            <button class=\"down-vote\" data-id=\"").concat(record.nameId, "\"><i class=\"far fa-thumbs-down\"></i> ( ").concat(record.negative_votes, " )</button>\n                            <button class=\"up-vote\" data-id=\"").concat(record.nameId, "\"><i class=\"far fa-thumbs-up\"></i>   ( ").concat(record.positive_votes, " ) </button>\n                            <button><i class=\"far fa-heart\"></i>  </button>\n                        </div>\n                    </div>\n                </div>\n            </a>\n        ");
-    return null;
-  });
-  (0, _jquery.default)(container)[alterMethod](html);
-  return html;
 }
 
 function getCookie(cname) {
@@ -14553,36 +14530,32 @@ module.exports = {
           (0, _jquery.default)(btn).html("<i class=\"fas fa-check\"></i> \u0646\u06CE\u0631\u062F\u0631\u0627");
         }
       });
-    });
-    (0, _jquery.default)(document).delegate('.make-fav', 'click', function () {
-      var favs = localStorage.getItem('favs');
-      var id = (0, _jquery.default)(this).data('id');
-      var html = "<div class=\"col col-3 col-md col-sm card-container\">".concat((0, _jquery.default)(this).parents('.card-container').html(), "</div>");
-
-      if (favs) {
-        favs = JSON.parse(favs);
-        favs[id] = html;
-        localStorage.setItem('favs', JSON.stringify(favs));
-      } else {
-        var newFavs = {};
-        newFavs[id] = html;
-        localStorage.setItem('favs', JSON.stringify(newFavs));
-      }
-
-      (0, _jquery.default)(this).removeClass('make-fav').addClass('remove-fav').html('<i class="fas fa-heart txt-red"></i>');
-    });
-    (0, _jquery.default)(document).delegate('.remove-fav', 'click', function () {
-      var favs = localStorage.getItem('favs');
-      var id = (0, _jquery.default)(this).data('id');
-
-      if (favs) {
-        favs = JSON.parse(favs);
-        delete favs[id];
-        localStorage.setItem('favs', JSON.stringify(favs));
-      }
-
-      (0, _jquery.default)(this).removeClass('remove-fav').addClass('make-fav').html('<i class="far fa-heart"></i>');
-    });
+    }); // $(document).delegate('.make-fav', 'click', function(){
+    //     let favs = localStorage.getItem('favs');
+    //     const id = $(this).data('id');
+    //     const html  = `<a class="col col-3 col-md col-sm card-container">${$(this).parents('.card-container').html()}</a>` ;
+    //     console.log(html)
+    //     if(favs){
+    //         favs = JSON.parse(favs);
+    //         favs[id] = html;
+    //         localStorage.setItem('favs', JSON.stringify(favs))
+    //     } else {
+    //         const newFavs = {};
+    //         newFavs[id] = html;
+    //         localStorage.setItem('favs', JSON.stringify(newFavs))
+    //     }
+    //     $(this).removeClass('make-fav').addClass('remove-fav').html('<i class="fas fa-heart txt-red"></i>');
+    // });
+    // $(document).delegate('.remove-fav', 'click', function(){
+    //     let favs = localStorage.getItem('favs');
+    //     const id = $(this).data('id');
+    //     if(favs){
+    //         favs = JSON.parse(favs);
+    //         delete favs[id];
+    //         localStorage.setItem('favs', JSON.stringify(favs))
+    //     }
+    //     $(this).removeClass('remove-fav').addClass('make-fav').html('<i class="far fa-heart"></i>');
+    // });
   }
 };
 },{"superagent":"../../node_modules/superagent/lib/client.js","jquery":"../../node_modules/jquery/dist/jquery.js","notyf":"../../node_modules/notyf/notyf.es.js"}],"main.js":[function(require,module,exports) {
@@ -14628,7 +14601,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59795" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42171" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
