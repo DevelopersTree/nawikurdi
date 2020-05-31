@@ -110,6 +110,12 @@ nav .nav-item:last-of-type{
     width: 120px;
     margin: 0 auto;
 }
+/* about container */
+.about-container{
+    text-align: right;
+    direction: rtl;
+    padding: 20px;
+}
 /* names and filters container */
 .filters-grid{
     padding: 0;

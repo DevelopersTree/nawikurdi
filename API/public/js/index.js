@@ -53,7 +53,7 @@ function display(container, data, mode = 'append'){
     } else if(mode == 'prepend') {
         alterMethod = 'prepend';
     }
-    
+
     let html = ``;
     data.map((record) =>{
         let gender = 'هاوبه‌ش'; 
@@ -80,6 +80,11 @@ function display(container, data, mode = 'append'){
         return null;
     });
     $(container)[alterMethod](html);
+    if(data.length == 0){
+        showNotFound();
+    } else {
+        hideNotFound();
+    }
     return html;
 }
 function showLoader(){
@@ -88,6 +93,17 @@ function showLoader(){
             <h3 class="txt-center"><i class="fas fa-spinner fa-spin"></i></h3>
         </a> 
     `);
+}
+function showNotFound(){
+    $('.names-container').prepend(`
+        <div class="col col-md col-sm  notfound-container">
+            <img src="/images/child.webp"/>
+            <p>ببوره‌ هیچ ناوێك نه‌دۆزرایه‌وه‌ ده‌سته‌واژه‌یه‌كی جیاواز به‌كاربهێنه‌</p>
+        </div>
+    `);
+}
+function hideNotFound(){
+    $('.notfound-container').remove()
 }
 function hideLoader(){
     $('.loader').remove()
