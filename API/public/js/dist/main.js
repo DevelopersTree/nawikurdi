@@ -14551,20 +14551,32 @@ function getCookie(cname) {
   return "";
 }
 
+function showNotFound() {
+  (0, _jquery.default)('.names-container').prepend("\n        <div class=\"col col-md col-sm  notfound-container\">\n            <img src=\"/images/child.webp\"/>\n            <p>\u0686\u0647\u200C\u0646\u062F \u0646\u0627\u0648\u06CE\u0643 \u0647\u0647\u200C\u06B5\u0628\u0698\u06CE\u0631\u0647\u200C \u0628\u06C6 \u0626\u0647\u200C\u0648\u0647\u200C\u06CC \u0644\u06CE\u0631\u0647\u200C \u062F\u0647\u200C\u0631\u0628\u0686\u06CE\u062A</p>\n        </div>\n    ");
+}
+
+function hideNotFound() {
+  (0, _jquery.default)('.notfound-container').remove();
+}
+
 module.exports = {
   init: function init() {
     window.topFunction = topFunction;
     var favs = localStorage.getItem('favs');
 
     try {
+      var found = false;
       favs = JSON.parse(favs);
 
       for (var key in favs) {
         if (favs.hasOwnProperty(key)) {
           var val = favs[key];
           (0, _jquery.default)('.names-container').append(val);
+          found = true;
         }
       }
+
+      if (!found) showNotFound();
     } catch (e) {
       console.log(e);
     }
@@ -14613,12 +14625,12 @@ module.exports = {
       if (fav_ids) {
         fav_ids = fav_ids.split(',');
         var index = fav_ids.indexOf(id + "");
-        console.log(fav_ids);
 
         if (index > -1) {
           fav_ids.splice(index, 1);
         }
 
+        if (!fav_ids.length == 0) showNotFound();
         localStorage.setItem('fav_ids', fav_ids.join(','));
       }
 
@@ -14669,7 +14681,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52894" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49384" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

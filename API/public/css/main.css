@@ -56,6 +56,9 @@ body{
     .btn-group button.gender-filter,.btn-group button.popularity-filter{
         width: 100% !important;
     }
+    .submit-name-container{
+        width: 100% !important;
+    }
 }
 .btn-group button:first-child{
     border-top-left-radius: 3px;
@@ -68,7 +71,18 @@ body{
 .txt-center{
     text-align: center;
 }
-
+/* submit new name */
+.submit-name-container{
+    direction: rtl;
+    text-align: right;
+    padding: 20px;
+    width: 50%;
+    margin: 0 auto;
+}
+.submit-name-container label{
+    font-size: 20px;
+    padding-right: 5px;
+}
 /* main container */
 .main-grid{
     flex-direction: column;
@@ -174,7 +188,7 @@ nav .nav-item:last-of-type{
     padding-right: 15px;
     padding-bottom: 5px;;
 }
-.input-filter{
+.input-filter, .input{
     width: 100%;
     height: 50px;
     font-size: 13px;
@@ -183,6 +197,9 @@ nav .nav-item:last-of-type{
     border: 1px solid #2ec5b6;
     border-radius: 4px;
     direction: rtl;
+}
+.input {
+    padding-right: 5px;
 }
 .names-container{
     /* direction: rtl; */

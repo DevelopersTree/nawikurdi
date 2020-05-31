@@ -45,19 +45,34 @@ function getCookie(cname) {
     return "";
 }
 
+function showNotFound(){
+    $('.names-container').prepend(`
+        <div class="col col-md col-sm  notfound-container">
+            <img src="/images/child.webp"/>
+            <p>چه‌ند ناوێك هه‌ڵبژێره‌ بۆ ئه‌وه‌ی لێره‌ ده‌ربچێت</p>
+        </div>
+    `);
+}
+function hideNotFound(){
+    $('.notfound-container').remove()
+}
+
 module.exports = {
     init: function() {
         window.topFunction = topFunction;
         
         let favs = localStorage.getItem('favs');
         try{
+            let found = false;
             favs = JSON.parse(favs);
             for (var key in favs) {
                 if (favs.hasOwnProperty(key)) {
                   var val = favs[key];
-                  $('.names-container').append(val)
+                  $('.names-container').append(val);
+                  found = true;
                 }
             }
+            if(!found) showNotFound();
         }catch(e){
             console.log(e)
         }
@@ -106,10 +121,10 @@ module.exports = {
             if(fav_ids){
                 fav_ids = fav_ids.split(',');
                 const index = fav_ids.indexOf(id+"");
-                console.log(fav_ids)
                 if (index > -1) {
                     fav_ids.splice(index, 1);
                 }
+                if(!fav_ids.length == 0) showNotFound();
                 localStorage.setItem('fav_ids', fav_ids.join(','))
             }
             $(this).parents('.card-container').remove()

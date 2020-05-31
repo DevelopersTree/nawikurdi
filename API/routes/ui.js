@@ -77,6 +77,13 @@ router.get('/about', async function(req, res, next) {
     slugify,
   });
 });
+router.get('/submit-name', async function(req, res, next) {
+  render(req, res, {
+    view: 'submit-name',
+    title: ' ناوی كوردی | ناوێكی نوێ بنێره‌',
+    slugify,
+  });
+});
 
 // router.get('/blog/:slug/:blog_id', postViewCountMiddleware, async function(req, res, next) {
 //   const blog = await loadSingleBlogData(req);
