@@ -14235,11 +14235,13 @@ window.onscroll = function () {
 };
 
 function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
+  try {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  } catch (e) {}
 }
 
 function topFunction() {
@@ -14638,6 +14640,102 @@ module.exports = {
     });
   }
 };
+},{"superagent":"../../node_modules/superagent/lib/client.js","jquery":"../../node_modules/jquery/dist/jquery.js","notyf":"../../node_modules/notyf/notyf.es.js"}],"submit-name.js":[function(require,module,exports) {
+"use strict";
+
+var _superagent = _interopRequireDefault(require("superagent"));
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+var _notyf = require("notyf");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+// Create an instance of Notyf
+// scroll logic
+var mybutton = document.getElementById("to-top");
+
+window.onscroll = function () {
+  scrollFunction();
+};
+
+function scrollFunction() {
+  try {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  } catch (e) {}
+}
+
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+var notyf = new _notyf.Notyf();
+
+function submitname(data) {
+  var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
+  return _superagent.default.post("/api").send(data).end(function (err, res) {
+    cb(err, res);
+  });
+}
+
+module.exports = {
+  init: function init() {
+    window.topFunction = topFunction;
+    (0, _jquery.default)('.submit-button').click(function () {
+      var btn = this;
+      var submited_name = {
+        desc: '   ',
+        gender: 'O'
+      };
+      var gender = "".concat((0, _jquery.default)('select[name=gender]').val()).trim();
+      var name = "".concat((0, _jquery.default)('input[name=name]').val()).trim();
+      var desc = "".concat((0, _jquery.default)('input[name=desc]').val()).trim();
+
+      if (name != '' && gender) {
+        // submitname(name).then((result) => {
+        //   if (result.data.status === 1) {
+        //     alert('سوپاس لە ماوەیەکی کەمدا ناوەکات لە پەڕەکە دەردەجێت');
+        //     this.setState({ open: false });
+        //   } else {
+        //     alert('ببورە ناوەکەت زیاد نەکرا تکایە دوبارەی بکەوە');
+        //   }
+        // }).catch(() => {
+        //   // error handling goes here
+        // });
+        submitname(_objectSpread(_objectSpread({}, submited_name), {}, {
+          name: name,
+          gender: gender,
+          desc: desc
+        }), function (err, res) {
+          if (err) {
+            // const errors = err.response.body.errors;
+            // notyf.error(errors[0].msg);
+            notyf.error('هەڵەیەک رویدا لەکاتی ناردنی ناوی نوێ');
+          } else {
+            notyf.success('ناوەکەت بە سەرکەوتویی نێردرا');
+            (0, _jquery.default)('input[name=name]').val('');
+            (0, _jquery.default)('input[name=desc]').val('');
+          }
+        });
+      } else {
+        console.log(name, gender);
+        notyf.error('ناو و رەگەز پێویستە بۆ ناردنی ناوێکی نوێ');
+      }
+    });
+  }
+};
 },{"superagent":"../../node_modules/superagent/lib/client.js","jquery":"../../node_modules/jquery/dist/jquery.js","notyf":"../../node_modules/notyf/notyf.es.js"}],"main.js":[function(require,module,exports) {
 "use strict";
 
@@ -14645,15 +14743,18 @@ var index = _interopRequireWildcard(require("./index"));
 
 var favorites = _interopRequireWildcard(require("./favorites"));
 
+var submit_name = _interopRequireWildcard(require("./submit-name"));
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 window.nawikurdi = {
   index: index,
-  favorites: favorites
+  favorites: favorites,
+  submit_name: submit_name
 };
-},{"./index":"index.js","./favorites":"favorites.js"}],"../../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./index":"index.js","./favorites":"favorites.js","./submit-name":"submit-name.js"}],"../../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -14681,7 +14782,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49384" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42127" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,6 +1,30 @@
 
 <% const meta = (`${seo}`).split('\n'); %>
+<% if(activePage=='home'){ %>
+    <title><%= Buffer.from(`${meta[2]}`, 'base64').toString('utf8') %></title>
+    <meta name="title" content="<%= Buffer.from(`${meta[2]}`, 'base64').toString('utf8') %>">
 
+    <meta name="description" content="<%= Buffer.from(`${meta[1]}`, 'base64').toString('utf8') %>">
+    <meta name="keywords" content="<%= Buffer.from(`${meta[0]}`, 'base64').toString('utf8') %>">
+    
+
+    <!-- Open Graph / Facebook -->
+    <meta property="article:author" content="https://www.facebook.com/nawykurdi" />
+    <meta property="og:locale" content="en_EN"/>
+    <meta property="og:site_name" content="nawikurdi" />
+    <meta property="og:description" content="<%= Buffer.from(`${meta[1]}`, 'base64').toString('utf8') %>"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="<%= Buffer.from(`${meta[2]}`, 'base64').toString('utf8') %>" />
+    <meta property="og:image" content="<%= PUBLIC_WEBSITE_LINK %>/images/cover-2.jpg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://lucid-source.com/">
+    <meta property="twitter:title" content="<%= Buffer.from(`${meta[2]}`, 'base64').toString('utf8') %>">
+    <meta property="twitter:description" content="<%= Buffer.from(`${meta[1]}`, 'base64').toString('utf8') %>">
+    <meta property="twitter:image" content="<%= PUBLIC_WEBSITE_LINK %>/images/cover-2.jpg">
+
+<% } %>
 <% if(!seoFromContent){ %>
     <title><%= Buffer.from(`${meta[2]}`, 'base64').toString('utf8') %></title>
     <meta name="title" content="<%= Buffer.from(`${meta[2]}`, 'base64').toString('utf8') %>">
@@ -10,9 +34,9 @@
     
 
     <!-- Open Graph / Facebook -->
-    <meta property="article:author" content="https://www.facebook.com/LucidSource" />
+    <meta property="article:author" content="https://www.facebook.com/nawykurdi" />
     <meta property="og:locale" content="en_EN"/>
-    <meta property="og:site_name" content="Lucid Source" />
+    <meta property="og:site_name" content="nawikurdi" />
     <meta property="og:description" content="<%= Buffer.from(`${meta[1]}`, 'base64').toString('utf8') %>"/>
     <meta property="og:type" content="website" />
     <meta property="og:title" content="<%= Buffer.from(`${meta[2]}`, 'base64').toString('utf8') %>" />

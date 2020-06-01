@@ -9,11 +9,14 @@ const notyf = new Notyf();
 let mybutton = document.getElementById("to-top");
 window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
+    try{
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+          } else {
+            mybutton.style.display = "none";
+          }
+    }catch(e){}
+
 }
 function topFunction() {
   document.body.scrollTop = 0; // For Safari

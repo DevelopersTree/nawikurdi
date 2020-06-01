@@ -59,6 +59,9 @@ body{
     .submit-name-container{
         width: 100% !important;
     }
+    nav .nav-item{
+        padding: 0px !important;
+    }
 }
 .btn-group button:first-child{
     border-top-left-radius: 3px;
@@ -82,6 +85,17 @@ body{
 .submit-name-container label{
     font-size: 20px;
     padding-right: 5px;
+}
+.input-container{
+    padding: 15px;
+}
+.submit-button{
+    width:100%;
+    padding: 15px;
+    border-radius: 4px;
+    background: #2ec5b6;
+    border: none;
+    color: white;
 }
 /* main container */
 .main-grid{
