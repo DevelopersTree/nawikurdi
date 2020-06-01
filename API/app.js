@@ -15,7 +15,7 @@ require('dotenv').config();
 const app = express();
 app.use(helmet());
 app.use(compression());
-// app.use(favicon(path.join(__dirname,'public','images','favicon-32x32.png')));
+app.use(favicon(path.join(__dirname,'public','images','icon.png')));
 app.use(cors());
 
 // view engine setup
