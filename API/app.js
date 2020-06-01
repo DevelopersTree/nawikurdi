@@ -36,7 +36,7 @@ const UiRouter = require('./routes/ui');
 app.use((req,res,next)=>{
     if(!req.cookies.uid){
       const id = uniqid();
-      res.cookie('uid', id);
+      res.cookie('uid', id, {maxAge: 3.154e+10});
     }
     next();
 });
