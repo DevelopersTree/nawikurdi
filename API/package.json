@@ -7,7 +7,7 @@
     "dev": "nodemon ./bin/www & npx parcel watch public/js/main.js --out-dir public/js/dist --no-source-maps",
     "dbMigration": "npx knex migrate:latest --knexfile ./database/knexfile.js",
     "dbSeeds": "npx knex seed:run --knexfile ./database/knexfile.js",
-    "parcel:build": "sudo npx parcel build public/javascripts/main.js --out-dir public/javascripts/dist"
+    "parcel:build": "sudo npx parcel build public/js/main.js --out-dir public/js/dist"
   },
   "dependencies": {
     "compression": "^1.7.4",
