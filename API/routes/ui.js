@@ -55,7 +55,7 @@ router.get('/', async function(req, res, next) {
   const indexData = await loadIndexData(req);
   render(req, res, {
     view: 'index',
-    title: 'به‌خێربێن بۆ  ناوی كوردی',
+    title: ' ناوی كوردی | په‌ره‌ی سه‌ره‌كی',
     ...indexData,
     slugify,
   });
@@ -65,7 +65,7 @@ router.get('/favorites', async function(req, res, next) {
 
   render(req, res, {
     view: 'favorites',
-    title: ' ناوی كوردی | دڵخوازه‌كان',
+    title: ' ناوی كوردی | هه‌ڵبژاردنه‌كانم',
     ...favoritesData,
     slugify,
   });

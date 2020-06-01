@@ -1,0 +1,3 @@
+Sitemap: https://nawikurdi.com/sitemap.xml
+User-agent: *
+Allow: /

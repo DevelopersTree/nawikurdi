@@ -86,10 +86,10 @@
                 if(record.gender == 'M' || record.gender == 'm') gender ='كور';
                 else if(record.gender == 'F' || record.gender == 'F') gender ='كچ';
             %>
-            <a  class="col col-3 col-md col-sm card-container">
+            <a   alt="<%= record.name %> ( <%= gender %> )" class="col col-3 col-md col-sm card-container" itemscope itemtype="http://schema.org/Person">
                 <div class="card">
-                    <h3 class="card-title"><%= record.name %> ( <%= gender %> ) </h3>
-                    <p class="card-body">
+                    <h3 class="card-title" itemprop="name"><%= record.name %> ( <%= gender %> ) </h3>
+                    <p class="card-body" itemprop="jobTitle">
                         <%= record.desc %>
                     ‌</p>
                     <div class="card-footer">
