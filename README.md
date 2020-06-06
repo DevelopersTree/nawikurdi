@@ -11,7 +11,7 @@ source files
 
 ## API documentation
 
-public API link is `api.nawikurdi.com` routes
+public API link is `nawikurdi.com/api` routes
 
 ### GET routes
 `/` main route will accept these query parameters
