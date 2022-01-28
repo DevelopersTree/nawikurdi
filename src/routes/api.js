@@ -1,9 +1,12 @@
 const express = require('express');
+
 const router = express.Router();
 const paginateValidator = require('../middlewares/validators/common/paginate');
 const searchQueryValidator = require('../middlewares/validators/common/searchQuery');
 const { genderValidator, submitNameValidator, voteNameValidator } = require('../middlewares/validators/main');
-const { getBaseNames, getBaseRecordCount, vote, newName } = require('../queries');
+const {
+  getBaseNames, getBaseRecordCount, vote, newName,
+} = require('../queries');
 
 router.get('/greeting', (req, res) => {
   res.json({
@@ -49,7 +52,7 @@ router.post('/', submitNameValidator, (req, res) => {
 });
 
 router.post('/vote', voteNameValidator, (req, res) => {
-  const {body} = req;
+  const { body } = req;
   vote(body).then(() => {
     res.status(200).json({
       status: 1,

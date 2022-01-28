@@ -4,38 +4,39 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www & npx parcel watch public/js/main.js --out-dir public/js/dist --no-source-maps",
+    "dev": "npx nodemon ./bin/www & npx parcel watch public/js/main.js --dist-dir public/js/dist --no-source-maps",
     "dbMigration": "npx knex migrate:latest --knexfile ./database/knexfile.js",
     "dbSeeds": "npx knex seed:run --knexfile ./database/knexfile.js",
-    "parcel:build": "sudo npx parcel build public/js/main.js --out-dir public/js/dist"
+    "parcel:build": "npx parcel build public/js/main.js --dist-dir public/js/dist"
   },
   "dependencies": {
+    "@fingerprintjs/fingerprintjs": "^3.3.2",
     "compression": "^1.7.4",
-    "cookie-parser": "1.4.4",
+    "cookie-parser": "^1.4.6",
     "cors": "2.8.5",
-    "debug": "2.6.9",
-    "dotenv": "6.2.0",
+    "debug": "^4.3.3",
+    "dotenv": "^14.3.2",
     "ejs": "^3.1.3",
-    "express": "4.17.1",
+    "express": "^4.17.2",
     "express-ejs-layouts": "^2.5.0",
-    "express-validator": "6.1.1",
-    "helmet": "^3.22.0",
-    "http-errors": "^1.7.3",
+    "express-validator": "^6.14.0",
+    "helmet": "^5.0.2",
+    "http-errors": "^2.0.0",
     "jquery": "^3.5.1",
-    "knex": "0.19.5",
-    "morgan": "1.9.1",
-    "mysql": "2.17.1",
-    "mysql2": "1.6.5",
+    "knex": "^1.0.1",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
     "notyf": "^3.7.0",
     "serve-favicon": "^2.5.0",
     "slugify": "^1.4.0",
-    "superagent": "^5.2.2",
+    "superagent": "^7.1.1",
     "uniqid": "^5.2.0"
   },
   "devDependencies": {
     "eslint": "6.2.2",
     "eslint-config-airbnb-base": "14.0.0",
     "eslint-plugin-import": "2.18.2",
-    "parcel": "^1.12.4"
+    "parcel": "^2.2.1"
   }
 }

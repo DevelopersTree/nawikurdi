@@ -25,25 +25,24 @@ module.exports = {
   ],
   voteNameValidator: [
     body('name_id')
-      .isInt({gt:0})
+      .isInt({ gt: 0 })
       .withMessage('invalid id for name'),
     body('uid')
       .isString()
       .escape()
-      .custom((value,{req}) =>{
-        const {body} = req;
+      .custom((value, { req }) => {
+        const { body: b } = req;
         return db('votes').count('id as count')
-          .where('uid', body.uid)
-          .andWhere('nameid', body.name_id)
-          .andWhere('impact', body.impact)
-          .then(([result])=>{
-            if(result.count > 0)
-              return Promise.reject(new Error('you cannot vote same name twice with same impact'));
-            
+          .where('uid', b.uid)
+          .andWhere('nameid', b.name_id)
+          .andWhere('impact', b.impact)
+          .then(([result]) => {
+            if (result.count > 0) { return Promise.reject(new Error('you cannot vote same name twice with same impact')); }
+
             return Promise.resolve(true);
-          })
+          });
       }),
-    
+
     body('impact')
       .isIn(['positive', 'negative'])
       .withMessage('invalid impact value'),

@@ -13,9 +13,9 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-app.use(helmet());
+// app.use(helmet());
 app.use(compression());
-app.use(favicon(path.join(__dirname,'public','images','fav-icon.png')));
+app.use(favicon(path.join(__dirname, 'public', 'images', 'fav-icon.png')));
 app.use(cors());
 
 // view engine setup
@@ -29,16 +29,15 @@ app.use(express.urlencoded({ extended: true, limit: '20mb' }));
 app.use(cookieParser(process.env.cookie_secret));
 
 
-
 const ApiRouter = require('./routes/api');
 const UiRouter = require('./routes/ui');
 
-app.use((req,res,next)=>{
-    if(!req.cookies.uid){
-      const id = uniqid();
-      res.cookie('uid', id, {maxAge: 3.154e+10});
-    }
-    next();
+app.use((req, res, next) => {
+  if (!req.cookies.uid) {
+    const id = uniqid();
+    res.cookie('uid', id, { maxAge: 3.154e+10 });
+  }
+  next();
 });
 
 app.use('/api/', ApiRouter);
