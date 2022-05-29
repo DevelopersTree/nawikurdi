@@ -233,10 +233,12 @@ nav .nav-item:last-of-type{
     color: #011627;
     border: 1px solid #f3f3f3;
 }
-.card .card-body, .card .card-title{
+.card .card-body, .card a .card-title,.card a{
     padding:15px;
     padding-top: 0;
     padding-bottom: 0;
+    text-decoration: none !important;
+    color: black;
 }
 .card .card-body{
     padding-top:3px;

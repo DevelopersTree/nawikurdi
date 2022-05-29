@@ -4,7 +4,7 @@ const slugify = require('slugify');
 const router = express.Router();
 const render = require('./../helpers/customRender');
 
-const { getBaseNames, getBaseRecordCount } = require('./../queries');
+const { getBaseNames, getBaseRecordCount, getSingleName } = require('./../queries');
 
 function loadIndexData(req) {
   return Promise.all([
@@ -17,6 +17,15 @@ function loadIndexData(req) {
         names: names || [],
         records: records.recordCount || 0,
       };
+    });
+}
+function loadSingleData(req) {
+  return Promise.all([
+    getSingleName(req.params.id),
+  ])
+    .then((values) => {
+      const [name] = values;
+      return name || undefined;
     });
 }
 function loadFavoritesData() {
@@ -65,6 +74,19 @@ router.get('/submit-name', async (req, res) => {
     title: ' ناوی كوردی | ناوێكی نوێ بنێره‌',
     slugify,
   });
+});
+router.get('/:id', async (req, res) => {
+  const nameData = await loadSingleData(req);
+  if(!nameData){
+    res.redirect('/')
+  }else{
+    render(req, res, {
+      view: 'single',
+      title: ` ناوی كوردی | ${nameData.name}`,
+      slugify,
+      ...nameData
+    });
+  }
 });
 
 

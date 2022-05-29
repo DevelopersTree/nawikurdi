@@ -42,6 +42,24 @@
     <meta property="twitter:image" content="https://nawikurdi.com/images/nawikurdi-cover.jpg">
 
 <% } %>
+<% if(isSingle){ %>
+    <meta name="description" content="<%=desc%>">
+    <!-- Open Graph / Facebook -->
+    <meta property="article:author" content="https://www.facebook.com/nawykurdi" />
+    <meta property="og:locale" content="en_EN"/>
+    <meta property="og:site_name"  content="<%= title %>"  />
+    <meta property="og:description" content="<%=desc%>"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="<%= title %>" />
+    <meta property="og:image" content="https://nawikurdi.com/images/nawikurdi-cover.jpg" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://nawikurdi.com">
+    <meta property="twitter:title" content="<%= title %>">
+    <meta property="twitter:description" content="<%=desc%>">
+    <meta property="twitter:image" content="https://nawikurdi.com/images/nawikurdi-cover.jpg">
+
+<% } %>
 <% if(activePage=='about'){ %>
     <meta name="description" content="ماڵپەری ناوەکان بە یەکەم پرۆژەی درەختی گەشەپێدەران دادەنرێت کە وەک سەرچاوەیەک و ئەرشیفێک کاردەکات بۆ ناوەکانی زمانی کوردی و ماناکانیان .">
     <!-- Open Graph / Facebook -->

@@ -30,6 +30,19 @@ function getBaseNames(limit = 10, offset = 0, req = {}) {
     }
     return query;
 }
+function getSingleName(id=0) {
+    const query = db('names')
+        .select(
+            'nameId', 'name', 'desc', 'gender',
+            'positive_votes', 'negative_votes'
+        )
+        .where('deleted', 0)
+        .andWhere('activated', 1)
+        .andWhere('nameId', id)
+        .first()
+    
+    return query;
+}
 
 function getBaseRecordCount() {
     return db('names').count({
@@ -67,6 +80,7 @@ function newName(body) {
 module.exports = {
     getBaseNames,
     getBaseRecordCount,
+    getSingleName,
     vote,
     newName,
 }

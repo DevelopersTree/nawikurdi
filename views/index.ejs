@@ -95,12 +95,14 @@
                 if(record.gender == 'M' || record.gender == 'm') gender ='كور';
                 else if(record.gender == 'F' || record.gender == 'F') gender ='كچ';
             %>
-            <a   alt="<%= record.name %> ( <%= gender %> )" class="col col-3 col-md col-sm card-container" itemscope itemtype="http://schema.org/Person">
+            <span alt="<%= record.name %> ( <%= gender %> )"  class="col col-3 col-md col-sm card-container" itemscope itemtype="http://schema.org/Person">
                 <div class="card">
-                    <h3 class="card-title" itemprop="name"><%= record.name %> ( <%= gender %> ) </h3>
-                    <p class="card-body" itemprop="jobTitle">
-                        <%= record.desc %>
-                    ‌</p>
+                    <a href="/<%=record.nameId%>">
+                        <h3 class="card-title" itemprop="name"><%= record.name %> ( <%= gender %> ) </h3>
+                        <p class="card-body" itemprop="jobTitle">
+                            <%= record.desc %>
+                        ‌</p>
+                    </a>
                     <div class="card-footer">
                         <div class="btn-group _3btn">
                             <button class="down-vote" data-id="<%= record.nameId %>"><i class="fas fa-arrow-down"></i> ( <%= record.negative_votes %> )</button>
@@ -109,7 +111,7 @@
                         </div>
                     </div>
                 </div>
-            </a>
+            </span>
         <% }) %>  
     </div> 
      
